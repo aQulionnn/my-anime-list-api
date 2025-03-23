@@ -18,4 +18,8 @@
       <ProjectReference Include="..\AnimeFranchises.Presentation\AnimeFranchises.Presentation.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="8.0.0" />
+    </ItemGroup>
+
 </Project>
