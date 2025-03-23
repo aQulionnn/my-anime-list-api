@@ -1,4 +1,6 @@
+using AnimeFranchises.Domain.Interfaces;
 using AnimeFranchises.Infrastructure.Data;
+using AnimeFranchises.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +15,10 @@ public static class DependencyInjection
         {
             options.UseNpgsql(configuration.GetConnectionString("Database"));
         });
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IAnimeFranchiseRepository, AnimeFranchiseRepository>();
+        services.AddScoped<IAnimeFranchiseInfoRepository, AnimeFranchiseInfoRepository>();
         
         return services;
     }
