@@ -1,3 +1,5 @@
+using AnimeFranchises.Application.Validators.AnimeFranchiseValidators;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AnimeFranchises.Application;
@@ -6,7 +8,10 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        var assembly = typeof(DependencyInjection).Assembly;
+        
+        services.AddAutoMapper(assembly);
+        services.AddValidatorsFromAssembly(assembly);
         
         return services;
     }
