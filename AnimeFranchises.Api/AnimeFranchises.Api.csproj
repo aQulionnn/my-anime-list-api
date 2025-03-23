@@ -13,4 +13,9 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AnimeFranchises.Infrastructure\AnimeFranchises.Infrastructure.csproj" />
+      <ProjectReference Include="..\AnimeFranchises.Presentation\AnimeFranchises.Presentation.csproj" />
+    </ItemGroup>
+
 </Project>

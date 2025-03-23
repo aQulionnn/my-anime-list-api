@@ -13,4 +13,8 @@
       <Folder Include="Validators\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AnimeFranchises.Domain\AnimeFranchises.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
