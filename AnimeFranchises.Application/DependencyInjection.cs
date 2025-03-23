@@ -12,6 +12,10 @@ public static class DependencyInjection
         
         services.AddAutoMapper(assembly);
         services.AddValidatorsFromAssembly(assembly);
+        services.AddMediatR(configuration =>
+        {
+            configuration.RegisterServicesFromAssembly(assembly);
+        });
         
         return services;
     }
