@@ -1,4 +1,3 @@
-using AnimeFranchises.Application.Validators.AnimeFranchiseValidators;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
