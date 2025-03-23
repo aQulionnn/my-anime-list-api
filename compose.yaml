@@ -1,0 +1,30 @@
+﻿services:
+  api-gateway:
+    image: apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+  
+  anime-franchises.api:
+    image: animefranchises.api
+    build:
+      context: .
+      dockerfile: AnimeFranchises.Api/Dockerfile
+
+  anime-series.api:
+    image: animeseries.api
+    build:
+      context: .
+      dockerfile: AnimeSeries.Api/Dockerfile
+
+  anime-movies.api:
+    image: animemovies.api
+    build:
+      context: .
+      dockerfile: AnimeMovies.Api/Dockerfile
+
+  anime-extras.api:
+    image: animeextras.api
+    build:
+      context: .
+      dockerfile: AnimeExtras.Api/Dockerfile
