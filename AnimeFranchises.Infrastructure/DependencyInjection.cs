@@ -20,6 +20,12 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IAnimeFranchiseRepository, AnimeFranchiseRepository>();
         services.AddScoped<IAnimeFranchiseInfoRepository, AnimeFranchiseInfoRepository>();
+
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = configuration.GetConnectionString("Redis");
+            options.InstanceName = configuration["Redis:InstanceName"];
+        });
         
         return services;
     }
