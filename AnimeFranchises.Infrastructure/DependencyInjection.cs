@@ -1,6 +1,8 @@
+using AnimeFranchises.Application.Services;
 using AnimeFranchises.Domain.Interfaces;
 using AnimeFranchises.Infrastructure.Data;
 using AnimeFranchises.Infrastructure.Repositories;
+using AnimeFranchises.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +22,8 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IAnimeFranchiseRepository, AnimeFranchiseRepository>();
         services.AddScoped<IAnimeFranchiseInfoRepository, AnimeFranchiseInfoRepository>();
+
+        services.AddScoped<ICacheService, RedisCacheService>();
 
         services.AddStackExchangeRedisCache(options =>
         {

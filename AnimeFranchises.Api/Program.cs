@@ -1,10 +1,13 @@
 using AnimeFranchises.Application;
 using AnimeFranchises.Infrastructure;
+using AnimeFranchises.Infrastructure.Extensions;
 using AnimeFranchises.Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Host.AddSerilogConfiguration();
 
 builder.Services
     .AddApplication()
