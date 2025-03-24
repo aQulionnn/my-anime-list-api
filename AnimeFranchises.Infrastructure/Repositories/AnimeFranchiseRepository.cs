@@ -30,6 +30,8 @@ public class AnimeFranchiseRepository(AnimeFranchiseDbContext context) : IAnimeF
         var existing = await _context.AnimeFranchises.FindAsync(id);
         if (existing is null) return null;
         
+        animeFranchise.Id = id;
+        
         _context.Entry(existing).CurrentValues.SetValues(animeFranchise);
         return existing;
     }

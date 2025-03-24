@@ -12,11 +12,6 @@ public class UpdateAnimeFranchiseInfoDtoValidator : AbstractValidator<UpdateAnim
             .MaximumLength(250).WithMessage("Title cannot exceed 250 characters.");
         
         RuleFor(x => x.Language)
-            .NotEmpty().WithMessage("Language is required.")
             .IsInEnum().WithMessage("Language must be a valid value.");
-        
-        RuleFor(x => x.AnimeFranchiseId)
-            .NotEmpty().WithMessage("Anime franchise ID is required.")
-            .NotEqual(Guid.Empty).WithMessage("Invalid anime franchise ID.");
     }
 }

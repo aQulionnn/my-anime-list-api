@@ -22,6 +22,12 @@ public class CreateAnimeFranchiseInfoCommandHandler
         {
             throw new FluentValidation.ValidationException(validation.Errors);
         }
+        
+        var franchiseExists = await _unitOfWork.AnimeFranchiseRepository.GetByIdAsync(request.CreateAnimeFranchiseInfoDto.AnimeFranchiseId);
+        if (franchiseExists is null)
+        {
+            throw new KeyNotFoundException("Anime franchise not found");
+        }
 
         await _unitOfWork.BeginAsync();
         try

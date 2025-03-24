@@ -12,7 +12,6 @@ public class CreateAnimeFranchiseInfoDtoValidator : AbstractValidator<CreateAnim
             .MaximumLength(250).WithMessage("Title cannot exceed 250 characters.");
         
         RuleFor(x => x.Language)
-            .NotEmpty().WithMessage("Language is required.")
             .IsInEnum().WithMessage("Language must be a valid value.");
 
         RuleFor(x => x.AnimeFranchiseId)
