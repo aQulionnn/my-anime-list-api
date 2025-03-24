@@ -13,7 +13,8 @@ public static class DependencyInjection
     {
         services.AddDbContext<AnimeFranchiseDbContext>(options =>
         {
-            options.UseNpgsql(configuration.GetConnectionString("Database"));
+            options.UseNpgsql(configuration.GetConnectionString("Database"), 
+                sqlOptions => sqlOptions.MigrationsHistoryTable("__EFMigrationsHistory_AnimeFranchise"));
         });
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
