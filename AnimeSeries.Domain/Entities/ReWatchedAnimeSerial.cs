@@ -1,11 +1,11 @@
 namespace AnimeSeries.Domain.Entities;
 
-public class AnimeSeriesReWatched
+public class ReWatchedAnimeSerial
 {
     public Guid Id { get; set; }
     public int ReWatchedEpisodes { get; set; }
     public int ViewingOrder { get; set; }
     
-    public Guid AnimeSeriesId { get; set; }
-    public AnimeSeries AnimeSeries { get; set; }
+    public Guid AnimeSerialId { get; set; }
+    public AnimeSerial AnimeSerial { get; set; }
 }

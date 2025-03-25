@@ -1,6 +1,6 @@
 namespace AnimeSeries.Domain.Entities;
 
-public class AnimeSeries
+public class AnimeSerial
 {
     public Guid Id { get; set; }
     public int Season { get; set; }
@@ -14,6 +14,6 @@ public class AnimeSeries
     public string PosterUrl { get; set; }
     public Guid FranchiseId { get; set; }
 
-    public IEnumerable<AnimeSeriesInfo> AnimeSeriesInfos { get; set; }
-    public IEnumerable<AnimeSeriesReWatched> AnimeSeriesReWatcheds { get; set; }
+    public IEnumerable<AnimeSerialInfo> AnimeSerialInfos { get; set; }
+    public IEnumerable<ReWatchedAnimeSerial> ReWatchedAnimeSeries { get; set; }
 }

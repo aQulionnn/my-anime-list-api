@@ -10,4 +10,8 @@
       <Folder Include="Controllers\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AnimeSeries.Application\AnimeSeries.Application.csproj" />
+    </ItemGroup>
+
 </Project>

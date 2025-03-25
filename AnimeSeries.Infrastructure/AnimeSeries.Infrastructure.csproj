@@ -7,8 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Data\Configurations\" />
       <Folder Include="Repositories\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AnimeSeries.Application\AnimeSeries.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.3" />
     </ItemGroup>
 
 </Project>
