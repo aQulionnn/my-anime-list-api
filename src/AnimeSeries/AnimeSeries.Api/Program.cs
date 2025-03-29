@@ -1,3 +1,4 @@
+using AnimeSeries.Api.Middlewares;
 using AnimeSeries.Application;
 using AnimeSeries.Infrastructure;
 using AnimeSeries.Infrastructure.Extensions;
@@ -24,6 +25,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<RequestLogContextMiddleware>();
 
 app.UseCors();
 
