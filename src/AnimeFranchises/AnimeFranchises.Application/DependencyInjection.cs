@@ -1,4 +1,5 @@
 using AnimeFranchises.Application.Behaviors;
+using AnimeFranchises.Application.Extensions;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,8 @@ public static class DependencyInjection
             configuration.RegisterServicesFromAssembly(assembly);
         });
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestLoggingPipelineBehavior<,>));
+
+        services.AddResiliencePipelines();
         
         return services;
     }
