@@ -17,10 +17,10 @@ public class CacheAnimeFranchiseIdsJob(Channel<CacheAnimeFranchiseIdsRequest> ch
         while (!stoppingToken.IsCancellationRequested)
         {
             var request = await _channel.Reader.ReadAsync(stoppingToken);
-            var cachedIds = await _cache.GetDataAsync<List<Guid>>("anime-franchise-ids");
+            var cachedIds = await _cache.GetDataAsync<HashSet<Guid>>("anime-franchise-ids");
             
             if (cachedIds is null)  
-                await _cache.SetDataAsync("anime-franchise-ids", new List<Guid>() { request.AnimeFranchiseId });
+                await _cache.SetDataAsync("anime-franchise-ids", new HashSet<Guid>() { request.AnimeFranchiseId });
             else
             {
                 cachedIds.Add(request.AnimeFranchiseId);

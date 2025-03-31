@@ -16,9 +16,19 @@ public static class BackgroundTasksExtension
                 SingleReader = false,
                 AllowSynchronousContinuations = true,
             }));
+        
+        services.AddSingleton<Channel<RemoveAnimeFranchiseIdRequest>>(
+            _ => Channel.CreateUnbounded<RemoveAnimeFranchiseIdRequest>(new UnboundedChannelOptions
+            {
+                SingleReader = false,
+                AllowSynchronousContinuations = true,
+            }));
 
         services.AddSingleton<ICacheAnimeFranchiseIdsJob, CacheAnimeFranchiseIdsJob>();
+        services.AddSingleton<IRemoveAnimeFranchiseIdCacheJob, RemoveAnimeFranchiseIdCacheJob>();
+        
         services.AddHostedService<CacheAnimeFranchiseIdsJob>();
+        services.AddHostedService<RemoveAnimeFranchiseIdCacheJob>();
         
         return services;
     }
