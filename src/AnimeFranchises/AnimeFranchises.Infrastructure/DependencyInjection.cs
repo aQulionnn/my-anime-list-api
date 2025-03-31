@@ -1,6 +1,7 @@
 using AnimeFranchises.Application.Services;
 using AnimeFranchises.Domain.Interfaces;
 using AnimeFranchises.Infrastructure.Data;
+using AnimeFranchises.Infrastructure.Extensions;
 using AnimeFranchises.Infrastructure.Repositories;
 using AnimeFranchises.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,8 @@ public static class DependencyInjection
             options.Configuration = configuration.GetConnectionString("Redis");
             options.InstanceName = configuration["Redis:InstanceName"];
         });
+
+        services.AddBackgroundTasks();
         
         return services;
     }
