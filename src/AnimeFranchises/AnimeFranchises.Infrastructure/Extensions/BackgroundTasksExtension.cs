@@ -29,6 +29,7 @@ public static class BackgroundTasksExtension
         
         services.AddHostedService<CacheAnimeFranchiseIdsJob>();
         services.AddHostedService<RemoveAnimeFranchiseIdCacheJob>();
+        services.AddHostedService<RefreshAnimeFranchiseIdsCacheJob>();
         
         return services;
     }
