@@ -5,7 +5,7 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 
-namespace AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Commands;
+namespace AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Commands.v1;
 
 public class UpdateAnimeFranchiseInfoCommandHandler
     (IUnitOfWork unitOfWork, IMapper mapper, IValidator<UpdateAnimeFranchiseInfoDto> validator) 

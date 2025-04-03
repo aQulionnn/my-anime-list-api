@@ -4,7 +4,7 @@ using AnimeFranchises.Domain.Interfaces;
 using AutoMapper;
 using MediatR;
 
-namespace AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Queries;
+namespace AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Queries.v1;
 
 public class GetAnimeFranchiseInfosQueryHandler
     (IUnitOfWork unitOfWork, IMapper mapper, ICacheService cache) 

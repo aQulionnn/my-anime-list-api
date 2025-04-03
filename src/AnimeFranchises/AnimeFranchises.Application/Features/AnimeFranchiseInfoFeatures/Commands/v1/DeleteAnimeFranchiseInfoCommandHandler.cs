@@ -2,7 +2,7 @@ using AnimeFranchises.Domain.Entities;
 using AnimeFranchises.Domain.Interfaces;
 using MediatR;
 
-namespace AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Commands;
+namespace AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Commands.v1;
 
 public class DeleteAnimeFranchiseInfoCommandHandler(IUnitOfWork unitOfWork) 
     : IRequestHandler<DeleteAnimeFranchiseInfoCommand, AnimeFranchiseInfo>

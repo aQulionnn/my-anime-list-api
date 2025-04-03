@@ -4,7 +4,7 @@ using AutoMapper;
 using MediatR;
 using Polly.Registry;
 
-namespace AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Queries;
+namespace AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Queries.v1;
 
 public class GetAnimeFranchiseInfoByIdQueryHandler
     (IUnitOfWork unitOfWork, IMapper mapper, ResiliencePipelineProvider<string> resiliencePipelineProvider) 

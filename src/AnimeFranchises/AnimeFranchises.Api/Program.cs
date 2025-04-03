@@ -20,8 +20,8 @@ builder.Services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Anime Franchises API V1", Version = "v1" });
-    options.SwaggerDoc("v2", new OpenApiInfo { Title = "Anime Franchises API V2", Version = "v2" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Anime Franchises API v1", Version = "v1" });
+    options.SwaggerDoc("v2", new OpenApiInfo { Title = "Anime Franchises API v2", Version = "v2" });
 });
 
 builder.Services.AddApiVersioning(options =>

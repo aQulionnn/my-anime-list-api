@@ -1,9 +1,8 @@
 using AnimeFranchises.Domain.Entities;
 using AnimeFranchises.Domain.Interfaces;
-using AutoMapper;
 using MediatR;
 
-namespace AnimeFranchises.Application.Features.AnimeFranchiseFeatures.Commands;
+namespace AnimeFranchises.Application.Features.AnimeFranchiseFeatures.Commands.v1;
 
 public class DeleteAnimeFranchiseCommandHandler(IUnitOfWork unitOfWork) 
     : IRequestHandler<DeleteAnimeFranchiseCommand, AnimeFranchise>

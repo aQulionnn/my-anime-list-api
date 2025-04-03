@@ -7,7 +7,7 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 
-namespace AnimeFranchises.Application.Features.AnimeFranchiseFeatures.Commands;
+namespace AnimeFranchises.Application.Features.AnimeFranchiseFeatures.Commands.v1;
 
 public class CreateAnimeFranchiseCommandHandler
     (

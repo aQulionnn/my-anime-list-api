@@ -1,12 +1,14 @@
 using AnimeFranchises.Application.Dtos.AnimeFranchiseInfoDtos;
-using AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Commands;
-using AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Queries;
+using AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Commands.v1;
+using AnimeFranchises.Application.Features.AnimeFranchiseInfoFeatures.Queries.v1;
+using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AnimeFranchises.Presentation.Controllers;
+namespace AnimeFranchises.Presentation.Controllers.v1;
 
-[Route("api/anime-franchise-info")]
+[ApiVersion("1")]
+[Route("api/v{version:apiVersion}/anime-franchise-info")]
 [ApiController]
 public class AnimeFranchiseInfoController(ISender sender) : ControllerBase
 {
