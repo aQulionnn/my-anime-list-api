@@ -3,6 +3,8 @@ using AnimeFranchises.Application;
 using AnimeFranchises.Infrastructure;
 using AnimeFranchises.Infrastructure.Extensions;
 using AnimeFranchises.Presentation;
+using Asp.Versioning;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,14 +18,35 @@ builder.Services
     .AddPresentation();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Anime Franchises API V1", Version = "v1" });
+    options.SwaggerDoc("v2", new OpenApiInfo { Title = "Anime Franchises API V2", Version = "v2" });
+});
+
+builder.Services.AddApiVersioning(options =>
+    {
+        options.DefaultApiVersion = new ApiVersion(1, 0);
+        options.ApiVersionReader = new UrlSegmentApiVersionReader();
+        options.ReportApiVersions = true;
+    })
+    .AddMvc()
+    .AddApiExplorer(options =>
+    {
+        options.GroupNameFormat = "'v'V";
+        options.SubstituteApiVersionInUrl = true;
+    });
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Anime Franchises API v1");
+        options.SwaggerEndpoint("/swagger/v2/swagger.json", "Anime Franchises API v2");
+    });
 }
 
 app.UseMiddleware<RequestLogContextMiddleware>();
