@@ -49,6 +49,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
+
 app.UseMiddleware<RequestLogContextMiddleware>();
 
 app.UseCors();

@@ -33,6 +33,7 @@ public static class DependencyInjection
         });
 
         services.AddBackgroundTasks();
+        services.AddOpenTelemetryConfiguration();
         
         return services;
     }
