@@ -4,6 +4,8 @@ using AnimeFranchises.Infrastructure;
 using AnimeFranchises.Infrastructure.Extensions;
 using AnimeFranchises.Presentation;
 using Asp.Versioning;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -48,6 +50,11 @@ if (app.Environment.IsDevelopment())
         options.SwaggerEndpoint("/swagger/v2/swagger.json", "Anime Franchises API v2");
     });
 }
+
+app.MapHealthChecks("health", new HealthCheckOptions()
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 app.UseOpenTelemetryPrometheusScrapingEndpoint();
 

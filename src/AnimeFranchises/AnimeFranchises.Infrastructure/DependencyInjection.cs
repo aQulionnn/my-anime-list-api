@@ -35,6 +35,10 @@ public static class DependencyInjection
         services.AddBackgroundTasks();
         services.AddOpenTelemetryConfiguration();
         
+        services.AddHealthChecks()
+            .AddNpgSql(configuration.GetConnectionString("Database")!)
+            .AddRedis(configuration.GetConnectionString("Redis")!);
+        
         return services;
     }
 }
