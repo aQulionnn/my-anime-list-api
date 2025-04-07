@@ -24,7 +24,7 @@ public class DeleteAnimeFranchiseInfoCommandHandlerV2
         catch (Exception ex)
         {
             await _unitOfWork.RollbackAsync();
-            return Result<AnimeFranchiseInfo>.Failure(500, new Error(ex.Message, null));
+            return Result<AnimeFranchiseInfo>.Failure(Error.InternalServerError(ex));
         }
     }
 }

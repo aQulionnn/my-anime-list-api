@@ -20,7 +20,7 @@ public class GetAnimeFranchiseByIdQueryHandlerV2
 
         if (animeFranchise == null)
         {
-            return Result<AnimeFranchiseResponseDto>.Failure(404, new Error("Anime franchise not found", null));
+            return Result<AnimeFranchiseResponseDto>.Failure(Error.NotFound());
         }
 
         var responseDto = _mapper.Map<AnimeFranchiseResponseDto>(animeFranchise);

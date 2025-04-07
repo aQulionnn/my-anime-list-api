@@ -21,7 +21,7 @@ public class UpdateAnimeFranchiseCommandHandlerV2
         var validation = await _validator.ValidateAsync(request.UpdateAnimeFranchiseDto, cancellationToken);
         if (!validation.IsValid)
         {
-            return Result<AnimeFranchise>.Failure(400, new Error("Validation failed", validation.Errors));
+            return Result<AnimeFranchise>.Failure(Error.ValidationFailed(validation.Errors));
         }
         
         await _unitOfWork.BeginAsync();
@@ -32,7 +32,7 @@ public class UpdateAnimeFranchiseCommandHandlerV2
 
             if (result == null)
             {
-                return Result<AnimeFranchise>.Failure(404, new Error("Anime franchise not found", null));
+                return Result<AnimeFranchise>.Failure(Error.NotFound());
             }
 
             await _unitOfWork.CommitAsync();
@@ -41,7 +41,7 @@ public class UpdateAnimeFranchiseCommandHandlerV2
         catch (Exception ex)
         {
             await _unitOfWork.RollbackAsync();
-            return Result<AnimeFranchise>.Failure(500, new Error(ex.Message, ex));
+            return Result<AnimeFranchise>.Failure(Error.InternalServerError(ex));
         }
     }
 }

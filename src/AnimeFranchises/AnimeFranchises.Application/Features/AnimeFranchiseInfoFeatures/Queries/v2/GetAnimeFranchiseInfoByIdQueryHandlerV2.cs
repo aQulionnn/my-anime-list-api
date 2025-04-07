@@ -18,7 +18,7 @@ public class GetAnimeFranchiseInfoByIdQueryHandlerV2
         var animeFranchiseInfo = await _unitOfWork.AnimeFranchiseInfoRepository.GetByIdAsync(request.Id);
         if (animeFranchiseInfo is null)
         {
-            return Result<AnimeFranchiseInfoResponseDto>.Failure(404, new Error("Anime franchise info not found", null));
+            return Result<AnimeFranchiseInfoResponseDto>.Failure(Error.NotFound());
         }
 
         var result = _mapper.Map<AnimeFranchiseInfoResponseDto>(animeFranchiseInfo);

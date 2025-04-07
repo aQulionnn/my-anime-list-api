@@ -16,6 +16,16 @@ public class Result<T>
     }
     
     public static Result<T> Success(T data) => new (200, true, data, Error.None);
-    
-    public static Result<T?> Failure(int statusCode, Error error) => new (statusCode, false, default, error);
+
+    public static Result<T?> Failure(Error error)
+    {
+        var statusCode = error.Message switch
+        {
+            "Validation Failed" => StatusCodes.BadRequest,
+            "Not Found" => StatusCodes.NotFound,
+            _ => StatusCodes.InternalServerError
+        };
+        
+        return new (statusCode, false, default, error);
+    }
 }

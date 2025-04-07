@@ -19,7 +19,7 @@ public class DeleteAnimeFranchiseCommandHandlerV2
             var result = await _unitOfWork.AnimeFranchiseRepository.DeleteAsync(request.Id);
             if (result == null)
             {
-                return Result<AnimeFranchise>.Failure(404, new Error("Anime franchise not found", null));
+                return Result<AnimeFranchise>.Failure(Error.NotFound());
             }
 
             await _unitOfWork.CommitAsync();
@@ -28,7 +28,7 @@ public class DeleteAnimeFranchiseCommandHandlerV2
         catch (Exception ex)
         {
             await _unitOfWork.RollbackAsync();
-            return Result<AnimeFranchise>.Failure(500, new Error(ex.Message, ex));
+            return Result<AnimeFranchise>.Failure(Error.InternalServerError(ex));
         }
     }
 }

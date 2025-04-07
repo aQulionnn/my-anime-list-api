@@ -21,13 +21,13 @@ public class CreateAnimeFranchiseInfoCommandHandlerV2
         var validation = await _validator.ValidateAsync(request.CreateAnimeFranchiseInfoDto, cancellationToken);
         if (!validation.IsValid)
         {
-            return Result<AnimeFranchiseInfo>.Failure(400, new Error("Validation failed", validation.Errors));
+            return Result<AnimeFranchiseInfo>.Failure(Error.ValidationFailed(validation.Errors));
         }
         
         var franchiseExists = await _unitOfWork.AnimeFranchiseRepository.GetByIdAsync(request.CreateAnimeFranchiseInfoDto.AnimeFranchiseId);
         if (franchiseExists is null)
         {
-            return Result<AnimeFranchiseInfo>.Failure(404, new Error("Anime franchise not found", null));
+            return Result<AnimeFranchiseInfo>.Failure(Error.NotFound());
         }
 
         await _unitOfWork.BeginAsync();
@@ -42,7 +42,7 @@ public class CreateAnimeFranchiseInfoCommandHandlerV2
         catch (Exception ex)
         {
             await _unitOfWork.RollbackAsync();
-            return Result<AnimeFranchiseInfo>.Failure(500, new Error(ex.Message, null));
+            return Result<AnimeFranchiseInfo>.Failure(Error.InternalServerError(ex));
         }
     }
 }

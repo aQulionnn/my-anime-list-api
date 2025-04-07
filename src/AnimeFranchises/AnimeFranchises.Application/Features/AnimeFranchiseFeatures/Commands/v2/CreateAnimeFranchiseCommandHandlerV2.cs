@@ -31,7 +31,7 @@ public class CreateAnimeFranchiseCommandHandlerV2
         var validation = await _validator.ValidateAsync(request.CreateAnimeFranchiseDto, cancellationToken);
         if (!validation.IsValid)
         {
-            return Result<AnimeFranchise>.Failure(400, new Error("Validation failed", validation.Errors));
+            return Result<AnimeFranchise>.Failure(Error.ValidationFailed(validation.Errors));
         }
         
         AnimeFranchise? result = null;
@@ -58,7 +58,7 @@ public class CreateAnimeFranchiseCommandHandlerV2
                 await _removeAnimeFranchiseIdCacheJob.PublishAsync(removeRequest, cancellationToken);
             }
 
-            return Result<AnimeFranchise>.Failure(500, new Error(ex.Message, ex));
+            return Result<AnimeFranchise>.Failure(Error.InternalServerError(ex));
         }
     }
 }
