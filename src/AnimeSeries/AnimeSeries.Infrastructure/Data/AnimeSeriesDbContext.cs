@@ -9,6 +9,7 @@ public class AnimeSeriesDbContext(DbContextOptions<AnimeSeriesDbContext> options
     public DbSet<AnimeSerial> AnimeSeries { get; set; }
     public DbSet<AnimeSerialInfo> AnimeSerialInfos { get; set; }
     public DbSet<ReWatchedAnimeSerial> ReWatchedAnimeSeries { get; set; }
+    public DbSet<Studio> Studios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

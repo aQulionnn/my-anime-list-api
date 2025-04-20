@@ -13,6 +13,8 @@ public class AnimeSerial
     public int ViewingOrder { get; set; }
     public string PosterUrl { get; set; }
     public Guid FranchiseId { get; set; }
+    public Guid StudioId { get; set; }
+    public Studio Studio { get; set; }
 
     public IEnumerable<AnimeSerialInfo> AnimeSerialInfos { get; set; }
     public IEnumerable<ReWatchedAnimeSerial> ReWatchedAnimeSeries { get; set; }

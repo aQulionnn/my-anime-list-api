@@ -21,5 +21,6 @@ public class AnimeSerialConfiguration : IEntityTypeConfiguration<AnimeSerial>
         builder.Property(x => x.ViewingOrder).HasColumnName("viewing_order");
         builder.Property(x => x.PosterUrl).HasColumnName("poster_url");
         builder.Property(x => x.FranchiseId).HasColumnName("franchise_id");
+        builder.Property(x => x.StudioId).HasColumnName("studio_id");
     }
 }
