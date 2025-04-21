@@ -3,14 +3,14 @@ using AnimeFranchises.Infrastructure.Data;
 
 namespace AnimeFranchises.Infrastructure.Repositories;
 
-public class UnitOfWork(AnimeFranchiseDbContext context) : IUnitOfWork
+public class UnitOfWork(FranchiseDbContext context) : IUnitOfWork
 {
-    private readonly AnimeFranchiseDbContext _context = context;
+    private readonly FranchiseDbContext _context = context;
     private IAnimeFranchiseRepository _animeFranchiseRepo;
     private IAnimeFranchiseInfoRepository _animeFranchiseInfoRepo;
     
-    public IAnimeFranchiseRepository AnimeFranchiseRepository { get { return _animeFranchiseRepo = new AnimeFranchiseRepository(_context); } }
-    public IAnimeFranchiseInfoRepository AnimeFranchiseInfoRepository { get { return _animeFranchiseInfoRepo = new AnimeFranchiseInfoRepository(_context); } }
+    public IAnimeFranchiseRepository AnimeFranchiseRepository { get { return _animeFranchiseRepo = new FranchiseRepository(_context); } }
+    public IAnimeFranchiseInfoRepository AnimeFranchiseInfoRepository { get { return _animeFranchiseInfoRepo = new FranchiseTranslationRepository(_context); } }
     
     public async Task BeginAsync()
     {

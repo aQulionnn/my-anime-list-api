@@ -10,25 +10,25 @@ public static class BackgroundTasksExtension
 {
     public static IServiceCollection AddBackgroundTasks(this IServiceCollection services)
     {
-        services.AddSingleton<Channel<CacheAnimeFranchiseIdsRequest>>(
-            _ => Channel.CreateUnbounded<CacheAnimeFranchiseIdsRequest>(new UnboundedChannelOptions
+        services.AddSingleton<Channel<CacheFranchiseIdsRequest>>(
+            _ => Channel.CreateUnbounded<CacheFranchiseIdsRequest>(new UnboundedChannelOptions
             {
                 SingleReader = false,
                 AllowSynchronousContinuations = true,
             }));
         
-        services.AddSingleton<Channel<RemoveAnimeFranchiseIdRequest>>(
-            _ => Channel.CreateUnbounded<RemoveAnimeFranchiseIdRequest>(new UnboundedChannelOptions
+        services.AddSingleton<Channel<RemoveFranchiseIdRequest>>(
+            _ => Channel.CreateUnbounded<RemoveFranchiseIdRequest>(new UnboundedChannelOptions
             {
                 SingleReader = false,
                 AllowSynchronousContinuations = true,
             }));
 
-        services.AddSingleton<ICacheAnimeFranchiseIdsJob, CacheAnimeFranchiseIdsJob>();
-        services.AddSingleton<IRemoveAnimeFranchiseIdCacheJob, RemoveAnimeFranchiseIdCacheJob>();
+        services.AddSingleton<ICacheFranchiseIdsJob, CacheFranchiseIdsJob>();
+        services.AddSingleton<IRemoveFranchiseIdCacheJob, RemoveFranchiseIdCacheJob>();
         
-        services.AddHostedService<CacheAnimeFranchiseIdsJob>();
-        services.AddHostedService<RemoveAnimeFranchiseIdCacheJob>();
+        services.AddHostedService<CacheFranchiseIdsJob>();
+        services.AddHostedService<RemoveFranchiseIdCacheJob>();
         services.AddHostedService<RefreshAnimeFranchiseIdsCacheJob>();
         
         return services;

@@ -1,3 +1,0 @@
-namespace AnimeFranchises.Application.BackgroundTasks.Requests;
-
-public record CacheAnimeFranchiseIdsRequest(Guid AnimeFranchiseId);

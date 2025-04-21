@@ -14,15 +14,15 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<AnimeFranchiseDbContext>(options =>
+        services.AddDbContext<FranchiseDbContext>(options =>
         {
             options.UseNpgsql(configuration.GetConnectionString("Database"), 
                 sqlOptions => sqlOptions.MigrationsHistoryTable("__EFMigrationsHistory_AnimeFranchise"));
         });
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IAnimeFranchiseRepository, AnimeFranchiseRepository>();
-        services.AddScoped<IAnimeFranchiseInfoRepository, AnimeFranchiseInfoRepository>();
+        services.AddScoped<IAnimeFranchiseRepository, FranchiseRepository>();
+        services.AddScoped<IAnimeFranchiseInfoRepository, FranchiseTranslationRepository>();
 
         services.AddScoped<ICacheService, RedisCacheService>();
 

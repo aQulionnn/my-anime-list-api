@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AnimeFranchises.Infrastructure.Migrations
 {
-    [DbContext(typeof(AnimeFranchiseDbContext))]
+    [DbContext(typeof(FranchiseDbContext))]
     partial class AnimeFranchiseDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -40,14 +40,14 @@ namespace AnimeFranchises.Infrastructure.Migrations
                     b.ToTable("anime_franchise", (string)null);
                 });
 
-            modelBuilder.Entity("AnimeFranchises.Domain.Entities.AnimeFranchiseInfo", b =>
+            modelBuilder.Entity("AnimeFranchises.Domain.Entities.FranchiseTranslation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<Guid>("AnimeFranchiseId")
+                    b.Property<Guid>("FranchiseId")
                         .HasColumnType("uuid")
                         .HasColumnName("anime_franchise_id");
 
@@ -62,16 +62,16 @@ namespace AnimeFranchises.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AnimeFranchiseId");
+                    b.HasIndex("FranchiseId");
 
                     b.ToTable("anime_franchise_info", (string)null);
                 });
 
-            modelBuilder.Entity("AnimeFranchises.Domain.Entities.AnimeFranchiseInfo", b =>
+            modelBuilder.Entity("AnimeFranchises.Domain.Entities.FranchiseTranslation", b =>
                 {
                     b.HasOne("AnimeFranchises.Domain.Entities.AnimeFranchise", "AnimeFranchise")
-                        .WithMany("AnimeFranchiseInfos")
-                        .HasForeignKey("AnimeFranchiseId")
+                        .WithMany("FranchiseTranslations")
+                        .HasForeignKey("FranchiseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -80,7 +80,7 @@ namespace AnimeFranchises.Infrastructure.Migrations
 
             modelBuilder.Entity("AnimeFranchises.Domain.Entities.AnimeFranchise", b =>
                 {
-                    b.Navigation("AnimeFranchiseInfos");
+                    b.Navigation("FranchiseTranslations");
                 });
 #pragma warning restore 612, 618
         }

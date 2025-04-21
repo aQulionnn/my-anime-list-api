@@ -1,5 +1,5 @@
-using AnimeFranchises.Application.Dtos.AnimeFranchiseDtos;
-using AnimeFranchises.Application.Dtos.AnimeFranchiseInfoDtos;
+using AnimeFranchises.Application.Dtos.FranchiseDtos;
+using AnimeFranchises.Application.Dtos.FranchiseTranslationDtos;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Fallback;
@@ -10,23 +10,23 @@ public static class FaultHandlingExtensions
 {
     public static IServiceCollection AddResiliencePipelines(this IServiceCollection services)
     {
-        services.AddResiliencePipeline<string, AnimeFranchiseResponseDto>("anime-franchise-fallback",
+        services.AddResiliencePipeline<string, FranchiseResponseDto>("anime-franchise-fallback",
             pipelineBuilder =>
             {
-                pipelineBuilder.AddFallback(new FallbackStrategyOptions<AnimeFranchiseResponseDto>
+                pipelineBuilder.AddFallback(new FallbackStrategyOptions<FranchiseResponseDto>
                 {
                     FallbackAction = _ =>
-                        Outcome.FromResultAsValueTask<AnimeFranchiseResponseDto>(new AnimeFranchiseResponseDto())
+                        Outcome.FromResultAsValueTask<FranchiseResponseDto>(new FranchiseResponseDto())
                 });
             });
         
-        services.AddResiliencePipeline<string, AnimeFranchiseInfoResponseDto>("anime-franchise-info-fallback",
+        services.AddResiliencePipeline<string, FranchiseTranslationResponseDto>("anime-franchise-info-fallback",
             pipelineBuilder =>
             {
-                pipelineBuilder.AddFallback(new FallbackStrategyOptions<AnimeFranchiseInfoResponseDto>
+                pipelineBuilder.AddFallback(new FallbackStrategyOptions<FranchiseTranslationResponseDto>
                 {
                     FallbackAction = _ =>
-                        Outcome.FromResultAsValueTask<AnimeFranchiseInfoResponseDto>(new AnimeFranchiseInfoResponseDto())
+                        Outcome.FromResultAsValueTask<FranchiseTranslationResponseDto>(new FranchiseTranslationResponseDto())
                 });
             });
         

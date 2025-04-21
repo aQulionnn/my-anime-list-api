@@ -4,9 +4,9 @@ namespace AnimeFranchises.Domain.Interfaces;
 
 public interface IAnimeFranchiseRepository
 {
-    Task<AnimeFranchise> CreateAsync(AnimeFranchise animeFranchise);
-    Task<IEnumerable<AnimeFranchise>> GetAllAsync();
-    Task<AnimeFranchise?> GetByIdAsync(Guid id);
-    Task<AnimeFranchise?> UpdateAsync(Guid id, AnimeFranchise animeFranchise);
-    Task<AnimeFranchise?> DeleteAsync(Guid id);
+    Task<Franchise> CreateAsync(Franchise franchise);
+    Task<IEnumerable<Franchise>> GetAllAsync();
+    Task<Franchise?> GetByIdAsync(Guid id);
+    Task<Franchise?> UpdateAsync(Guid id, Franchise franchise);
+    Task<Franchise?> DeleteAsync(Guid id);
 }
