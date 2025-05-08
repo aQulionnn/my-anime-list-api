@@ -1,6 +1,5 @@
-using AnimeService.Application.Dtos.AnimeSerialDtos;
+using AnimeService.Application.Dtos.AnimeDtos;
 using AnimeService.Application.Dtos.AnimeSerialInfoDtos;
-using AnimeService.Application.Dtos.ReWatchedAnimeSerialDtos;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Fallback;
@@ -11,33 +10,23 @@ public static class FaultHandlingExtensions
 {
     public static IServiceCollection AddResiliencePipelines(this IServiceCollection services)
     {
-        services.AddResiliencePipeline<string, AnimeSerialResponseDto>("anime-serial-fallback",
+        services.AddResiliencePipeline<string, AnimeResponseDto>("anime-serial-fallback",
             pipelineBuilder =>
             {
-                pipelineBuilder.AddFallback(new FallbackStrategyOptions<AnimeSerialResponseDto>
+                pipelineBuilder.AddFallback(new FallbackStrategyOptions<AnimeResponseDto>
                 {
                     FallbackAction = _ =>
-                        Outcome.FromResultAsValueTask<AnimeSerialResponseDto>(new AnimeSerialResponseDto())
+                        Outcome.FromResultAsValueTask<AnimeResponseDto>(new AnimeResponseDto())
                 });
             });
         
-        services.AddResiliencePipeline<string, AnimeSerialInfoResponseDto>("anime-serial-info-fallback",
+        services.AddResiliencePipeline<string, AnimeTranslationResponseDto>("anime-serial-info-fallback",
             pipelineBuilder =>
             {
-                pipelineBuilder.AddFallback(new FallbackStrategyOptions<AnimeSerialInfoResponseDto>
+                pipelineBuilder.AddFallback(new FallbackStrategyOptions<AnimeTranslationResponseDto>
                 {
                     FallbackAction = _ =>
-                        Outcome.FromResultAsValueTask<AnimeSerialInfoResponseDto>(new AnimeSerialInfoResponseDto())
-                });
-            });
-        
-        services.AddResiliencePipeline<string, ReWatchedAnimeSerialResponseDto>("re-watched-anime-serial-fallback",
-            pipelineBuilder =>
-            {
-                pipelineBuilder.AddFallback(new FallbackStrategyOptions<ReWatchedAnimeSerialResponseDto>
-                {
-                    FallbackAction = _ =>
-                        Outcome.FromResultAsValueTask<ReWatchedAnimeSerialResponseDto>(new ReWatchedAnimeSerialResponseDto())
+                        Outcome.FromResultAsValueTask<AnimeTranslationResponseDto>(new AnimeTranslationResponseDto())
                 });
             });
         

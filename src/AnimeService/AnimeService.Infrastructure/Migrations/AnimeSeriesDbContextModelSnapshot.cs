@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AnimeService.Infrastructure.Migrations
 {
-    [DbContext(typeof(AnimeSeriesDbContext))]
+    [DbContext(typeof(AnimeServiceDbContext))]
     partial class AnimeSeriesDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -22,7 +22,7 @@ namespace AnimeService.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("AnimeService.Domain.Entities.AnimeSerial", b =>
+            modelBuilder.Entity("AnimeService.Domain.Entities.Anime", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +75,7 @@ namespace AnimeService.Infrastructure.Migrations
                     b.ToTable("anime_serial", (string)null);
                 });
 
-            modelBuilder.Entity("AnimeService.Domain.Entities.AnimeSerialInfo", b =>
+            modelBuilder.Entity("AnimeService.Domain.Entities.AnimeTranslation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -128,29 +128,29 @@ namespace AnimeService.Infrastructure.Migrations
                     b.ToTable("re_watched_anime_serial", (string)null);
                 });
 
-            modelBuilder.Entity("AnimeService.Domain.Entities.AnimeSerialInfo", b =>
+            modelBuilder.Entity("AnimeService.Domain.Entities.AnimeTranslation", b =>
                 {
-                    b.HasOne("AnimeService.Domain.Entities.AnimeSerial", "AnimeSerial")
+                    b.HasOne("AnimeService.Domain.Entities.Anime", "Anime")
                         .WithMany("AnimeSerialInfos")
                         .HasForeignKey("AnimeSerialId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AnimeSerial");
+                    b.Navigation("Anime");
                 });
 
             modelBuilder.Entity("AnimeService.Domain.Entities.ReWatchedAnimeSerial", b =>
                 {
-                    b.HasOne("AnimeService.Domain.Entities.AnimeSerial", "AnimeSerial")
+                    b.HasOne("AnimeService.Domain.Entities.Anime", "Anime")
                         .WithMany("ReWatchedAnimeSeries")
                         .HasForeignKey("AnimeSerialId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AnimeSerial");
+                    b.Navigation("Anime");
                 });
 
-            modelBuilder.Entity("AnimeService.Domain.Entities.AnimeSerial", b =>
+            modelBuilder.Entity("AnimeService.Domain.Entities.Anime", b =>
                 {
                     b.Navigation("AnimeSerialInfos");
 

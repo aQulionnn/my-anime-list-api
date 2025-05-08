@@ -3,28 +3,22 @@ using AnimeService.Infrastructure.Data;
 
 namespace AnimeService.Infrastructure.Repositories;
 
-public class UnitOfWork(AnimeSeriesDbContext context) : IUnitOfWork
+public class UnitOfWork(AnimeServiceDbContext context) : IUnitOfWork
 {
-    private readonly AnimeSeriesDbContext _context = context;
-    private IAnimeSerialRepository _animeSerialRepository;
-    private IAnimeSerialInfoRepository _animeSerialInfoRepository;
-    private IReWatchedAnimeSerialRepository _reWatchedAnimeSerialRepository;
-
-    public IAnimeSerialRepository AnimeSerialRepository
+    private readonly AnimeServiceDbContext _context = context;
+    private IAnimeRepository _animeRepository;
+    private IAnimeTranslationRepository _animeTranslationRepository;
+    
+    public IAnimeRepository AnimeRepository
     {
-        get { return _animeSerialRepository = new AnimeSerialRepository(_context); }
+        get { return _animeRepository = new AnimeRepository(_context); }
     }
 
-    public IAnimeSerialInfoRepository AnimeSerialInfoRepository
+    public IAnimeTranslationRepository AnimeTranslationRepository
     {
-        get { return _animeSerialInfoRepository = new AnimeSerialInfoRepository(_context); }
+        get { return _animeTranslationRepository = new AnimeTranslationRepository(_context); }
     }
-
-    public IReWatchedAnimeSerialRepository ReWatchedAnimeSerialRepository
-    {
-        get { return _reWatchedAnimeSerialRepository = new ReWatchedAnimeSerialRepository(_context); }
-    }
-
+    
     public async Task BeginAsync()
     {
         await _context.Database.BeginTransactionAsync();

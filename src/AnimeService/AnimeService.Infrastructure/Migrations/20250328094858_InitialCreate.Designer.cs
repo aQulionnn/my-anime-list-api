@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AnimeService.Infrastructure.Migrations
 {
-    [DbContext(typeof(AnimeSeriesDbContext))]
+    [DbContext(typeof(AnimeServiceDbContext))]
     [Migration("20250328094858_InitialCreate")]
     partial class InitialCreate
     {

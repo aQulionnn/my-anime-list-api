@@ -2,9 +2,8 @@ namespace AnimeService.Domain.Interfaces;
 
 public interface IUnitOfWork : IDisposable
 {
-    IAnimeSerialRepository AnimeSerialRepository { get; }
-    IAnimeSerialInfoRepository AnimeSerialInfoRepository { get; }
-    IReWatchedAnimeSerialRepository ReWatchedAnimeSerialRepository { get; }
+    IAnimeRepository AnimeRepository { get; }
+    IAnimeTranslationRepository AnimeTranslationRepository { get; }
     
     Task BeginAsync();
     Task CommitAsync();
