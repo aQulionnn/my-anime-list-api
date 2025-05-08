@@ -13,4 +13,9 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ViewingService.Infrastructure\ViewingService.Infrastructure.csproj" />
+      <ProjectReference Include="..\ViewingService.Presentation\ViewingService.Presentation.csproj" />
+    </ItemGroup>
+
 </Project>

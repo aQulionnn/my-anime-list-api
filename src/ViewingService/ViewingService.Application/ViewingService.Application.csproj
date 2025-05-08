@@ -13,4 +13,8 @@
       <Folder Include="Validators\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ViewingService.Domain\ViewingService.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
