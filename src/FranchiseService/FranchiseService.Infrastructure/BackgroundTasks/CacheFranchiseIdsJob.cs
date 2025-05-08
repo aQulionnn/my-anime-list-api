@@ -25,11 +25,11 @@ public class CacheFranchiseIdsJob(Channel<CacheFranchiseIdsRequest> channel, ISe
             var cachedIds = await cache.GetDataAsync<HashSet<Guid>>("anime-franchise-ids");
             
             if (cachedIds is null)  
-                await cache.SetDataAsync("anime-franchise-ids", new HashSet<Guid>() { request.AnimeFranchiseId });
+                await cache.SetDataAsync("anime-franchise-ids", new HashSet<Guid>() { request.AnimeFranchiseId }, TimeSpan.FromHours(1));
             else
             {
                 cachedIds.Add(request.AnimeFranchiseId);
-                await cache.SetDataAsync("anime-franchise-ids", cachedIds);
+                await cache.SetDataAsync("anime-franchise-ids", cachedIds, TimeSpan.FromHours(1));
             }     
         }
     }

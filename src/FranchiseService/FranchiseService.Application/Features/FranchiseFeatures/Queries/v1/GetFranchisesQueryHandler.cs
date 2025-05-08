@@ -24,7 +24,7 @@ public class GetFranchisesQueryHandler
         
         var animeFranchises = await _unitOfWork.FranchiseRepository.GetAllAsync();
         var result = _mapper.Map<IEnumerable<FranchiseResponseDto>>(animeFranchises);
-        await _cache.SetDataAsync("anime-franchises", result);
+        await _cache.SetDataAsync("anime-franchises", result, TimeSpan.FromMinutes(5));
         
         return result;
     }

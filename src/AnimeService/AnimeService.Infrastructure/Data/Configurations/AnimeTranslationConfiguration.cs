@@ -8,7 +8,7 @@ public class AnimeTranslationConfiguration : IEntityTypeConfiguration<AnimeTrans
 {
     public void Configure(EntityTypeBuilder<AnimeTranslation> builder)
     {
-        builder.ToTable("anime_serial_info");
+        builder.ToTable("anime_translations"); // было "anime_serial_info"
         
         builder.Property(x => x.Id).HasColumnName("id");
         builder.Property(x => x.Title).HasColumnName("title");

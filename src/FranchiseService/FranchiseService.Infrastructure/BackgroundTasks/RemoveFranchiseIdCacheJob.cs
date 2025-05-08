@@ -25,7 +25,7 @@ public class RemoveFranchiseIdCacheJob(Channel<RemoveFranchiseIdRequest> channel
             var cachedIds = await cache.GetDataAsync<List<Guid>>("anime-franchise-ids");
 
             if (cachedIds is not null && cachedIds.Remove(request.AnimeFranchiseId))
-                await cache.SetDataAsync("anime-franchise-ids", cachedIds);
+                await cache.SetDataAsync("anime-franchise-ids", cachedIds, TimeSpan.FromHours(1));
         }   
     }
 

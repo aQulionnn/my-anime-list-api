@@ -25,7 +25,7 @@ public class GetFranchiseTranslationsQueryHandlerV2
         
         var animeFranchiseInfos = await _unitOfWork.FranchiseTranslationRepository.GetAllAsync();
         var result = _mapper.Map<IEnumerable<FranchiseTranslationResponseDto>>(animeFranchiseInfos);
-        await _cache.SetDataAsync("anime-franchise-infos", result);
+        await _cache.SetDataAsync("anime-franchise-infos", result, TimeSpan.FromHours(1));
 
         return Result<IEnumerable<FranchiseTranslationResponseDto>>.Success(result);
     }

@@ -9,13 +9,13 @@ namespace AnimeService.Application.Features.AnimeSerialFeatures.Commands;
 
 public class CreateAnimeCommandHandler
     (IUnitOfWork unitOfWork, IMapper mapper, IValidator<CreateAnimeDto> validator) 
-    : IRequestHandler<CreateAnimeSerialCommand, Anime>
+    : IRequestHandler<CreateAnimeCommand, Anime> // было CreateAnimeSerialCommand
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
     private readonly IValidator<CreateAnimeDto> _validator = validator;
     
-    public async Task<Anime> Handle(CreateAnimeSerialCommand request, CancellationToken cancellationToken)
+    public async Task<Anime> Handle(CreateAnimeCommand request, CancellationToken cancellationToken) // было CreateAnimeSerialCommand
     {
         var validation = await _validator.ValidateAsync(request.CreateAnimeDto, cancellationToken);
         if (!validation.IsValid)
@@ -40,5 +40,5 @@ public class CreateAnimeCommandHandler
     }
 }
 
-public record CreateAnimeSerialCommand(CreateAnimeDto CreateAnimeDto) 
+public record CreateAnimeCommand(CreateAnimeDto CreateAnimeDto) // было CreateAnimeSerialCommand
     : IRequest<Anime> { }

@@ -10,7 +10,7 @@ public static class FaultHandlingExtensions
 {
     public static IServiceCollection AddResiliencePipelines(this IServiceCollection services)
     {
-        services.AddResiliencePipeline<string, AnimeResponseDto>("anime-serial-fallback",
+        services.AddResiliencePipeline<string, AnimeResponseDto>("anime-fallback",
             pipelineBuilder =>
             {
                 pipelineBuilder.AddFallback(new FallbackStrategyOptions<AnimeResponseDto>
@@ -20,7 +20,7 @@ public static class FaultHandlingExtensions
                 });
             });
         
-        services.AddResiliencePipeline<string, AnimeTranslationResponseDto>("anime-serial-info-fallback",
+        services.AddResiliencePipeline<string, AnimeTranslationResponseDto>("anime-translation-fallback",
             pipelineBuilder =>
             {
                 pipelineBuilder.AddFallback(new FallbackStrategyOptions<AnimeTranslationResponseDto>

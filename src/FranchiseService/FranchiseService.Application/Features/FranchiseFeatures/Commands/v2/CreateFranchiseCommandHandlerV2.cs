@@ -6,6 +6,7 @@ using FluentValidation;
 using FranchiseService.Application.BackgroundTasks.Jobs;
 using FranchiseService.Application.BackgroundTasks.Requests;
 using FranchiseService.Application.Dtos.FranchiseDtos;
+using FranchiseService.Application.Services;
 using MassTransit;
 using MediatR;
 using MessageBroker.Contracts;
@@ -19,7 +20,8 @@ public class CreateFranchiseCommandHandlerV2
         IValidator<CreateFranchiseDto> validator, 
         ICacheFranchiseIdsJob cacheFranchiseIdsJob,
         IRemoveFranchiseIdCacheJob removeFranchiseIdCacheJob,
-        IPublishEndpoint publishEndpoint
+        IPublishEndpoint publishEndpoint,
+        ICacheService cache
     )
     : IRequestHandler<CreateAnimeFranchiseCommandV2, Result<Franchise>>
 {
@@ -29,6 +31,7 @@ public class CreateFranchiseCommandHandlerV2
     private readonly ICacheFranchiseIdsJob _cacheFranchiseIdsJob = cacheFranchiseIdsJob;
     private readonly IRemoveFranchiseIdCacheJob _removeFranchiseIdCacheJob = removeFranchiseIdCacheJob;
     private readonly IPublishEndpoint _publishEndpoint = publishEndpoint;
+    private readonly ICacheService _cache = cache;
     
     public async Task<Result<Franchise>> Handle(CreateAnimeFranchiseCommandV2 request, CancellationToken cancellationToken)
     {
@@ -51,6 +54,8 @@ public class CreateFranchiseCommandHandlerV2
             await _cacheFranchiseIdsJob.PublishAsync(cacheRequest, cancellationToken);
 
             await _publishEndpoint.Publish(new FranchiseCreated(result.Id));
+            await _cache.SetDataAsync($"franchises:{result.Id}", true, TimeSpan.FromHours(1));
+            
             return Result<Franchise>.Success(result);
         }
         catch (Exception ex)

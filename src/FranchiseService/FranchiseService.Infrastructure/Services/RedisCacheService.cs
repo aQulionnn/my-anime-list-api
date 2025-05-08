@@ -17,11 +17,11 @@ public class RedisCacheService(IDistributedCache cache) : ICacheService
         return JsonSerializer.Deserialize<T>(data);
     }
 
-    public async Task SetDataAsync<T>(string key, T data)
+    public async Task SetDataAsync<T>(string key, T data, TimeSpan ttl)
     {
         var options = new DistributedCacheEntryOptions()
         {
-            AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(300)
+            AbsoluteExpirationRelativeToNow = ttl
         };
         
         await _cache.SetStringAsync(key, JsonSerializer.Serialize(data), options);

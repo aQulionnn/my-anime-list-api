@@ -24,7 +24,7 @@ public class RefreshAnimeFranchiseIdsCacheJob
             if (cachedAnimeFranchiseIds?.Count() != animeFranchises.Count)
             {
                 var animeFranchiseIds = animeFranchises.Select(x => x.Id).ToList();
-                await cache.SetDataAsync("anime-franchise-ids", new HashSet<Guid>(animeFranchiseIds));
+                await cache.SetDataAsync("anime-franchise-ids", new HashSet<Guid>(animeFranchiseIds), TimeSpan.FromHours(1));
             }
             
             await Task.Delay(TimeSpan.FromMinutes(5), stoppingToken);
