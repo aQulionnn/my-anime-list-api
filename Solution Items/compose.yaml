@@ -16,15 +16,3 @@
     build:
       context: .
       dockerfile: AnimeSeries.Api/Dockerfile
-
-  anime-movies.api:
-    image: animemovies.api
-    build:
-      context: .
-      dockerfile: AnimeMovies.Api/Dockerfile
-
-  anime-extras.api:
-    image: animeextras.api
-    build:
-      context: .
-      dockerfile: AnimeExtras.Api/Dockerfile
