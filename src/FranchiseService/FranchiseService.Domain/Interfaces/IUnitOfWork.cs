@@ -2,8 +2,8 @@ namespace FranchiseService.Domain.Interfaces;
 
 public interface IUnitOfWork : IDisposable
 {
-    IAnimeFranchiseRepository AnimeFranchiseRepository { get; }
-    IAnimeFranchiseInfoRepository AnimeFranchiseInfoRepository { get; }
+    IFranchiseRepository FranchiseRepository { get; }
+    IFranchiseTranslationRepository FranchiseTranslationRepository { get; }
     
     Task BeginAsync();
     Task CommitAsync();

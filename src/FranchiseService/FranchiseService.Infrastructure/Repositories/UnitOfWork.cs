@@ -6,11 +6,11 @@ namespace FranchiseService.Infrastructure.Repositories;
 public class UnitOfWork(FranchiseDbContext context) : IUnitOfWork
 {
     private readonly FranchiseDbContext _context = context;
-    private IAnimeFranchiseRepository _animeFranchiseRepo;
-    private IAnimeFranchiseInfoRepository _animeFranchiseInfoRepo;
+    private IFranchiseRepository _franchiseRepo;
+    private IFranchiseTranslationRepository _franchiseTranslationRepo;
     
-    public IAnimeFranchiseRepository AnimeFranchiseRepository { get { return _animeFranchiseRepo = new FranchiseRepository(_context); } }
-    public IAnimeFranchiseInfoRepository AnimeFranchiseInfoRepository { get { return _animeFranchiseInfoRepo = new FranchiseTranslationRepository(_context); } }
+    public IFranchiseRepository FranchiseRepository { get { return _franchiseRepo = new FranchiseRepository(_context); } }
+    public IFranchiseTranslationRepository FranchiseTranslationRepository { get { return _franchiseTranslationRepo = new FranchiseTranslationRepository(_context); } }
     
     public async Task BeginAsync()
     {

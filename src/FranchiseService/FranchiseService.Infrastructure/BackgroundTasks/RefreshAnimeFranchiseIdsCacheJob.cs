@@ -19,7 +19,7 @@ public class RefreshAnimeFranchiseIdsCacheJob
             var unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
             
             var cachedAnimeFranchiseIds = await cache.GetDataAsync<HashSet<Guid>>("anime-franchise-ids");
-            var animeFranchises = (await unitOfWork.AnimeFranchiseRepository.GetAllAsync()).ToList();
+            var animeFranchises = (await unitOfWork.FranchiseRepository.GetAllAsync()).ToList();
 
             if (cachedAnimeFranchiseIds?.Count() != animeFranchises.Count)
             {

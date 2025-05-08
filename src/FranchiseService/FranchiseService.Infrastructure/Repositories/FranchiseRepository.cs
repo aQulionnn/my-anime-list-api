@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FranchiseService.Infrastructure.Repositories;
 
-public class FranchiseRepository(FranchiseDbContext context) : IAnimeFranchiseRepository
+public class FranchiseRepository(FranchiseDbContext context) : IFranchiseRepository
 {
     private readonly FranchiseDbContext _context = context;
     

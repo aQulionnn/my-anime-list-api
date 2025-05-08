@@ -2,6 +2,7 @@ using FranchiseService.Application.Dtos.FranchiseTranslationDtos;
 using FranchiseService.Application.Features.AnimeFranchiseInfoFeatures.Commands.v1;
 using FranchiseService.Application.Features.AnimeFranchiseInfoFeatures.Queries.v1;
 using Asp.Versioning;
+using FranchiseService.Application.Features.FranchiseTranslationFeatures.Commands.v1;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ public class FranchiseTranslationController(ISender sender) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateFranchiseTranslationDto createFranchiseTranslationDto)
     {
-        var command = new CreateAnimeFranchiseInfoCommand(createFranchiseTranslationDto);
+        var command = new CreateFranchiseTranslationCommand(createFranchiseTranslationDto);
         var result = await _sender.Send(command);
         return Ok(result);
     }

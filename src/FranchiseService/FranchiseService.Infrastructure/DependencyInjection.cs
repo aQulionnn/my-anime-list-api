@@ -21,8 +21,8 @@ public static class DependencyInjection
         });
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IAnimeFranchiseRepository, FranchiseRepository>();
-        services.AddScoped<IAnimeFranchiseInfoRepository, FranchiseTranslationRepository>();
+        services.AddScoped<IFranchiseRepository, FranchiseRepository>();
+        services.AddScoped<IFranchiseTranslationRepository, FranchiseTranslationRepository>();
 
         services.AddScoped<ICacheService, RedisCacheService>();
 
