@@ -31,6 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\MessageBroker\MessageBroker.csproj" />
       <ProjectReference Include="..\FranchiseService.Application\FranchiseService.Application.csproj" />
     </ItemGroup>
 

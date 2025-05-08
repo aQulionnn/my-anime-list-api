@@ -3,6 +3,7 @@ using AnimeService.Domain.Interfaces;
 using AnimeService.Infrastructure.Data;
 using AnimeService.Infrastructure.Repositories;
 using AnimeService.Infrastructure.Services;
+using MessageBroker;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +31,8 @@ public static class DependencyInjection
             options.Configuration = configuration.GetConnectionString("Redis");
             options.InstanceName = configuration["Redis:InstanceName"];
         });
+        
+        services.AddMessaging(configuration);
         
         return services;
     }

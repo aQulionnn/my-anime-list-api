@@ -1,6 +1,3 @@
 namespace MessageBroker.Contracts;
 
-public class Events
-{
-    
-}
+public record FranchiseCreated(Guid FranchiseId);

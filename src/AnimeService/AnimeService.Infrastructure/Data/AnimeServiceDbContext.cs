@@ -9,11 +9,14 @@ public class AnimeServiceDbContext(DbContextOptions<AnimeServiceDbContext> optio
     public DbSet<Anime> AnimeSeries { get; set; }
     public DbSet<AnimeTranslation> AnimeSerialInfos { get; set; }
     public DbSet<Studio> Studios { get; set; }
+    public DbSet<FranchiseReference> FranchiseReferences { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
             .ApplyConfiguration(new AnimeConfiguration())
-            .ApplyConfiguration(new AnimeTranslationConfiguration());
+            .ApplyConfiguration(new AnimeTranslationConfiguration())
+            .ApplyConfiguration(new StudioConfiguration())
+            .ApplyConfiguration(new FranchiseReferenceConfiguration());
     }
 }

@@ -4,6 +4,7 @@ using FranchiseService.Infrastructure.Extensions;
 using FranchiseService.Infrastructure.Data;
 using FranchiseService.Infrastructure.Repositories;
 using FranchiseService.Infrastructure.Services;
+using MessageBroker;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +39,8 @@ public static class DependencyInjection
         services.AddHealthChecks()
             .AddNpgSql(configuration.GetConnectionString("Database")!)
             .AddRedis(configuration.GetConnectionString("Redis")!);
+
+        services.AddMessaging(configuration);
         
         return services;
     }
