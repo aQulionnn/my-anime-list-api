@@ -26,6 +26,7 @@ public static class DependencyInjection
         services.AddScoped<IFranchiseTranslationRepository, FranchiseTranslationRepository>();
 
         services.AddScoped<ICacheService, RedisCacheService>();
+        services.AddScoped<IMessagePublisher>();
 
         services.AddStackExchangeRedisCache(options =>
         {

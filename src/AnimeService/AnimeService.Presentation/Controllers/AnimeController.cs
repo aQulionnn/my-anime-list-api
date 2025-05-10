@@ -15,7 +15,7 @@ public class AnimeController(ISender sender) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateAnimeDto createAnimeDto)
     {
-        var command = new CreateAnimeSerialCommand(createAnimeDto);
+        var command = new CreateAnimeCommand(createAnimeDto);
         var result = await _sender.Send(command);
         return Ok(result);
     }

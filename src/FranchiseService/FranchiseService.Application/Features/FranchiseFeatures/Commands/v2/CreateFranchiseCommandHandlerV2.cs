@@ -20,7 +20,7 @@ public class CreateFranchiseCommandHandlerV2
         IValidator<CreateFranchiseDto> validator, 
         ICacheFranchiseIdsJob cacheFranchiseIdsJob,
         IRemoveFranchiseIdCacheJob removeFranchiseIdCacheJob,
-        IPublishEndpoint publishEndpoint,
+        IMessagePublisher messagePublisher,
         ICacheService cache
     )
     : IRequestHandler<CreateAnimeFranchiseCommandV2, Result<Franchise>>
@@ -30,7 +30,7 @@ public class CreateFranchiseCommandHandlerV2
     private readonly IValidator<CreateFranchiseDto> _validator = validator;
     private readonly ICacheFranchiseIdsJob _cacheFranchiseIdsJob = cacheFranchiseIdsJob;
     private readonly IRemoveFranchiseIdCacheJob _removeFranchiseIdCacheJob = removeFranchiseIdCacheJob;
-    private readonly IPublishEndpoint _publishEndpoint = publishEndpoint;
+    private readonly IMessagePublisher _messagePublisher = messagePublisher;
     private readonly ICacheService _cache = cache;
     
     public async Task<Result<Franchise>> Handle(CreateAnimeFranchiseCommandV2 request, CancellationToken cancellationToken)
@@ -53,7 +53,7 @@ public class CreateFranchiseCommandHandlerV2
             var cacheRequest = new CacheFranchiseIdsRequest(result.Id);
             await _cacheFranchiseIdsJob.PublishAsync(cacheRequest, cancellationToken);
 
-            await _publishEndpoint.Publish(new FranchiseCreated(result.Id));
+            await _messagePublisher.PublishAsync(new FranchiseCreated(result.Id), cancellationToken);
             await _cache.SetDataAsync($"franchises:{result.Id}", true, TimeSpan.FromHours(1));
             
             return Result<Franchise>.Success(result);
