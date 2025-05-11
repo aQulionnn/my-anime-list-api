@@ -2,7 +2,7 @@ namespace FranchiseService.Domain.Entities;
 
 public class Franchise
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
     public int ViewingOrder { get; set; }
     public int ViewingYear { get; set; }
     

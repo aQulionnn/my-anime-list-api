@@ -4,17 +4,17 @@ using FranchiseService.Application.Dtos.FranchiseDtos;
 using FranchiseService.Application.Services;
 using MediatR;
 
-namespace FranchiseService.Application.Features.AnimeFranchiseFeatures.Queries.v1;
+namespace FranchiseService.Application.Features.FranchiseFeatures.Queries.v1;
 
 public class GetFranchisesQueryHandler
     (IUnitOfWork unitOfWork, IMapper mapper, ICacheService cache) 
-    : IRequestHandler<GetAnimeFranchisesQuery, IEnumerable<FranchiseResponseDto>>
+    : IRequestHandler<GetFranchisesQuery, IEnumerable<FranchiseResponseDto>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
     private readonly ICacheService _cache = cache;
     
-    public async Task<IEnumerable<FranchiseResponseDto>> Handle(GetAnimeFranchisesQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<FranchiseResponseDto>> Handle(GetFranchisesQuery request, CancellationToken cancellationToken)
     {
         var cachedAnimeFranchises = await _cache.GetDataAsync<IEnumerable<FranchiseResponseDto>>("anime-franchises");
         if (cachedAnimeFranchises is not null)
@@ -30,4 +30,4 @@ public class GetFranchisesQueryHandler
     }
 }
 
-public record GetAnimeFranchisesQuery() : IRequest<IEnumerable<FranchiseResponseDto>> { }
+public record GetFranchisesQuery() : IRequest<IEnumerable<FranchiseResponseDto>> { }

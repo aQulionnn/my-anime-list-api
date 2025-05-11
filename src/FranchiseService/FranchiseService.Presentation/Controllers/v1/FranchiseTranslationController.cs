@@ -1,8 +1,7 @@
 using FranchiseService.Application.Dtos.FranchiseTranslationDtos;
-using FranchiseService.Application.Features.AnimeFranchiseInfoFeatures.Commands.v1;
-using FranchiseService.Application.Features.AnimeFranchiseInfoFeatures.Queries.v1;
 using Asp.Versioning;
 using FranchiseService.Application.Features.FranchiseTranslationFeatures.Commands.v1;
+using FranchiseService.Application.Features.FranchiseTranslationFeatures.Queries.v1;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,7 +25,7 @@ public class FranchiseTranslationController(ISender sender) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllAsync()
     {
-        var query = new GetAnimeFranchiseInfosQuery();
+        var query = new GetFranchiseTranslationsQuery();
         var result = await _sender.Send(query);
         return Ok(result);
     }
@@ -34,7 +33,7 @@ public class FranchiseTranslationController(ISender sender) : ControllerBase
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id)
     {
-        var query = new GetAnimeFranchiseInfoByIdQuery(id);
+        var query = new GetFranchiseTranslationByIdQuery(id);
         var result = await _sender.Send(query);
         return Ok(result);
     }
@@ -42,7 +41,7 @@ public class FranchiseTranslationController(ISender sender) : ControllerBase
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] UpdateFranchiseTranslationDto updateFranchiseTranslationDto)
     {
-        var command = new UpdateAnimeFranchiseInfoCommand(id, updateFranchiseTranslationDto);
+        var command = new UpdateFranchiseTranslationCommand(id, updateFranchiseTranslationDto);
         var result = await _sender.Send(command);
         return Ok(result);
     }
@@ -50,7 +49,7 @@ public class FranchiseTranslationController(ISender sender) : ControllerBase
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
     {
-        var command = new DeleteAnimeFranchiseInfoCommand(id);
+        var command = new DeleteFranchiseTranslationCommand(id);
         var result = await _sender.Send(command);
         return Ok(result);
     }

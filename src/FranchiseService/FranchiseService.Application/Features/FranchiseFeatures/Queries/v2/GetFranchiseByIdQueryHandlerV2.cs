@@ -5,16 +5,16 @@ using FranchiseService.Application.Dtos.FranchiseDtos;
 using MediatR;
 using Polly.Registry;
 
-namespace FranchiseService.Application.Features.AnimeFranchiseFeatures.Queries.v2;
+namespace FranchiseService.Application.Features.FranchiseFeatures.Queries.v2;
 
 public class GetFranchiseByIdQueryHandlerV2
     (IUnitOfWork unitOfWork, IMapper mapper) 
-    : IRequestHandler<GetAnimeFranchiseByIdQueryV2, Result<FranchiseResponseDto>>
+    : IRequestHandler<GetFranchiseByIdQueryV2, Result<FranchiseResponseDto>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
 
-    public async Task<Result<FranchiseResponseDto>> Handle(GetAnimeFranchiseByIdQueryV2 request, CancellationToken cancellationToken)
+    public async Task<Result<FranchiseResponseDto>> Handle(GetFranchiseByIdQueryV2 request, CancellationToken cancellationToken)
     {
         var animeFranchise = await _unitOfWork.FranchiseRepository.GetByIdAsync(request.Id);
 
@@ -28,5 +28,5 @@ public class GetFranchiseByIdQueryHandlerV2
     }
 }
 
-public record GetAnimeFranchiseByIdQueryV2(Guid Id) : IRequest<Result<FranchiseResponseDto>> { }
+public record GetFranchiseByIdQueryV2(Guid Id) : IRequest<Result<FranchiseResponseDto>> { }
 

@@ -1,7 +1,7 @@
 using FranchiseService.Application.Dtos.FranchiseDtos;
-using FranchiseService.Application.Features.AnimeFranchiseFeatures.Commands.v1;
-using FranchiseService.Application.Features.AnimeFranchiseFeatures.Queries.v1;
 using Asp.Versioning;
+using FranchiseService.Application.Features.FranchiseFeatures.Commands.v1;
+using FranchiseService.Application.Features.FranchiseFeatures.Queries.v1;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +17,7 @@ public class FranchiseController(ISender sender) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateFranchiseDto createFranchiseDto)
     {
-        var command = new CreateAnimeFranchiseCommand(createFranchiseDto);
+        var command = new CreateFranchiseCommand(createFranchiseDto);
         var result = await _sender.Send(command);
         return Ok(result);
     }
@@ -25,7 +25,7 @@ public class FranchiseController(ISender sender) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllAsync()
     {
-        var query = new GetAnimeFranchisesQuery();
+        var query = new GetFranchisesQuery();
         var result = await _sender.Send(query);
         return Ok(result);
     }
@@ -33,7 +33,7 @@ public class FranchiseController(ISender sender) : ControllerBase
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id)
     {
-        var query = new GetAnimeFranchiseByIdQuery(id);
+        var query = new GetFranchiseByIdQuery(id);
         var result = await _sender.Send(query);
         return Ok(result);
     }
@@ -41,7 +41,7 @@ public class FranchiseController(ISender sender) : ControllerBase
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] UpdateFranchiseDto updateFranchiseDto)
     {
-        var command = new UpdateAnimeFranchiseCommand(id, updateFranchiseDto);
+        var command = new UpdateFranchiseCommand(id, updateFranchiseDto);
         var result = await _sender.Send(command);
         return Ok(result);
     }
@@ -49,7 +49,7 @@ public class FranchiseController(ISender sender) : ControllerBase
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAsync([FromRoute]Guid id)
     {
-        var command = new DeleteAnimeFranchiseCommand(id);
+        var command = new DeleteFranchiseCommand(id);
         var result = await _sender.Send(command);
         return Ok(result);
     }

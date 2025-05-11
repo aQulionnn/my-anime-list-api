@@ -29,9 +29,6 @@ public class FranchiseTranslationRepository(FranchiseDbContext context) : IFranc
     {
         var existing = await _context.AnimeFranchiseInfos.FindAsync(id);
         if (existing is null) return null;
-
-        franchiseTranslation.Id = id;
-        franchiseTranslation.FranchiseId = existing.FranchiseId;
         
         _context.Entry(existing).CurrentValues.SetValues(franchiseTranslation);
         return existing;

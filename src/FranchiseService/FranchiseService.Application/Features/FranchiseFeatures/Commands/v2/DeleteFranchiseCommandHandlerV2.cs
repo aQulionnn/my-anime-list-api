@@ -3,15 +3,15 @@ using FranchiseService.Domain.Interfaces;
 using FranchiseService.Domain.Shared;
 using MediatR;
 
-namespace FranchiseService.Application.Features.AnimeFranchiseFeatures.Commands.v2;
+namespace FranchiseService.Application.Features.FranchiseFeatures.Commands.v2;
 
 public class DeleteFranchiseCommandHandlerV2
     (IUnitOfWork unitOfWork) 
-    : IRequestHandler<DeleteAnimeFranchiseCommandV2, Result<Franchise>>
+    : IRequestHandler<DeleteFranchiseCommandV2, Result<Franchise>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public async Task<Result<Franchise>> Handle(DeleteAnimeFranchiseCommandV2 request, CancellationToken cancellationToken)
+    public async Task<Result<Franchise>> Handle(DeleteFranchiseCommandV2 request, CancellationToken cancellationToken)
     {
         await _unitOfWork.BeginAsync();
         try
@@ -33,5 +33,5 @@ public class DeleteFranchiseCommandHandlerV2
     }
 }
 
-public record DeleteAnimeFranchiseCommandV2(Guid Id)
+public record DeleteFranchiseCommandV2(Guid Id)
     : IRequest<Result<Franchise>> { }

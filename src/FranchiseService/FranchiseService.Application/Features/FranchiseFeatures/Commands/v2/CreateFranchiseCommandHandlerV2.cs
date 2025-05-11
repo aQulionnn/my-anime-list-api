@@ -3,37 +3,31 @@ using FranchiseService.Domain.Interfaces;
 using FranchiseService.Domain.Shared;
 using AutoMapper;
 using FluentValidation;
-using FranchiseService.Application.BackgroundTasks.Jobs;
-using FranchiseService.Application.BackgroundTasks.Requests;
 using FranchiseService.Application.Dtos.FranchiseDtos;
 using FranchiseService.Application.Services;
 using MassTransit;
 using MediatR;
 using MessageBroker.Contracts;
 
-namespace FranchiseService.Application.Features.AnimeFranchiseFeatures.Commands.v2;
+namespace FranchiseService.Application.Features.FranchiseFeatures.Commands.v2;
 
 public class CreateFranchiseCommandHandlerV2
     (
         IUnitOfWork unitOfWork, 
         IMapper mapper, 
         IValidator<CreateFranchiseDto> validator, 
-        ICacheFranchiseIdsJob cacheFranchiseIdsJob,
-        IRemoveFranchiseIdCacheJob removeFranchiseIdCacheJob,
         IMessagePublisher messagePublisher,
         ICacheService cache
     )
-    : IRequestHandler<CreateAnimeFranchiseCommandV2, Result<Franchise>>
+    : IRequestHandler<CreateFranchiseCommandV2, Result<Franchise>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
     private readonly IValidator<CreateFranchiseDto> _validator = validator;
-    private readonly ICacheFranchiseIdsJob _cacheFranchiseIdsJob = cacheFranchiseIdsJob;
-    private readonly IRemoveFranchiseIdCacheJob _removeFranchiseIdCacheJob = removeFranchiseIdCacheJob;
     private readonly IMessagePublisher _messagePublisher = messagePublisher;
     private readonly ICacheService _cache = cache;
     
-    public async Task<Result<Franchise>> Handle(CreateAnimeFranchiseCommandV2 request, CancellationToken cancellationToken)
+    public async Task<Result<Franchise>> Handle(CreateFranchiseCommandV2 request, CancellationToken cancellationToken)
     {
         var validation = await _validator.ValidateAsync(request.CreateFranchiseDto, cancellationToken);
         if (!validation.IsValid)
@@ -50,9 +44,6 @@ public class CreateFranchiseCommandHandlerV2
             result = await _unitOfWork.FranchiseRepository.CreateAsync(animeFranchise);
             await _unitOfWork.CommitAsync();
 
-            var cacheRequest = new CacheFranchiseIdsRequest(result.Id);
-            await _cacheFranchiseIdsJob.PublishAsync(cacheRequest, cancellationToken);
-
             await _messagePublisher.PublishAsync(new FranchiseCreated(result.Id), cancellationToken);
             await _cache.SetDataAsync($"franchises:{result.Id}", true, TimeSpan.FromHours(1));
             
@@ -61,17 +52,10 @@ public class CreateFranchiseCommandHandlerV2
         catch (Exception ex)
         {
             await _unitOfWork.RollbackAsync();
-
-            if (result is not null)
-            {
-                var removeRequest = new RemoveFranchiseIdRequest(result.Id);
-                await _removeFranchiseIdCacheJob.PublishAsync(removeRequest, cancellationToken);
-            }
-
             return Result<Franchise>.Failure(Error.InternalServerError(ex));
         }
     }
 }
 
-public record CreateAnimeFranchiseCommandV2(CreateFranchiseDto CreateFranchiseDto) 
+public record CreateFranchiseCommandV2(CreateFranchiseDto CreateFranchiseDto) 
     : IRequest<Result<Franchise>> { }

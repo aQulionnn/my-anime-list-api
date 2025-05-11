@@ -35,4 +35,8 @@
       <ProjectReference Include="..\FranchiseService.Application\FranchiseService.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="BackgroundTasks\" />
+    </ItemGroup>
+
 </Project>

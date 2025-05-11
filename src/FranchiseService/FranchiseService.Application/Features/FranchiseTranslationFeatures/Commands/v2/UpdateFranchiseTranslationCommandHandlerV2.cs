@@ -6,17 +6,17 @@ using FluentValidation;
 using FranchiseService.Application.Dtos.FranchiseTranslationDtos;
 using MediatR;
 
-namespace FranchiseService.Application.Features.AnimeFranchiseInfoFeatures.Commands.v2;
+namespace FranchiseService.Application.Features.FranchiseTranslationFeatures.Commands.v2;
 
 public class UpdateFranchiseTranslationCommandHandlerV2
     (IUnitOfWork unitOfWork, IMapper mapper, IValidator<UpdateFranchiseTranslationDto> validator) 
-    : IRequestHandler<UpdateAnimeFranchiseInfoCommandV2, Result<FranchiseTranslation>>
+    : IRequestHandler<UpdateFranchiseTranslationCommandV2, Result<FranchiseTranslation>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
     private readonly IValidator<UpdateFranchiseTranslationDto> _validator = validator;
     
-    public async Task<Result<FranchiseTranslation>> Handle(UpdateAnimeFranchiseInfoCommandV2 request, CancellationToken cancellationToken)
+    public async Task<Result<FranchiseTranslation>> Handle(UpdateFranchiseTranslationCommandV2 request, CancellationToken cancellationToken)
     {
         var validation = await _validator.ValidateAsync(request.UpdateFranchiseTranslationDto, cancellationToken);
         if (!validation.IsValid)
@@ -41,5 +41,5 @@ public class UpdateFranchiseTranslationCommandHandlerV2
     }
 }
 
-public record UpdateAnimeFranchiseInfoCommandV2(Guid Id, UpdateFranchiseTranslationDto UpdateFranchiseTranslationDto)
+public record UpdateFranchiseTranslationCommandV2(Guid Id, UpdateFranchiseTranslationDto UpdateFranchiseTranslationDto)
     : IRequest<Result<FranchiseTranslation>>;

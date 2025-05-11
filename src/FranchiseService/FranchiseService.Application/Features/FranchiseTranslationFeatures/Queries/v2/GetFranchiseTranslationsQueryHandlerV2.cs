@@ -5,17 +5,17 @@ using FranchiseService.Application.Dtos.FranchiseTranslationDtos;
 using FranchiseService.Application.Services;
 using MediatR;
 
-namespace FranchiseService.Application.Features.AnimeFranchiseInfoFeatures.Queries.v2;
+namespace FranchiseService.Application.Features.FranchiseTranslationFeatures.Queries.v2;
 
 public class GetFranchiseTranslationsQueryHandlerV2
     (IUnitOfWork unitOfWork, IMapper mapper, ICacheService cache) 
-    : IRequestHandler<GetAnimeFranchiseInfosQueryV2, Result<IEnumerable<FranchiseTranslationResponseDto>>>
+    : IRequestHandler<GetFranchiseTranslationsQueryV2, Result<IEnumerable<FranchiseTranslationResponseDto>>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
     private readonly ICacheService _cache = cache;
 
-    public async Task<Result<IEnumerable<FranchiseTranslationResponseDto>>> Handle(GetAnimeFranchiseInfosQueryV2 request, CancellationToken cancellationToken)
+    public async Task<Result<IEnumerable<FranchiseTranslationResponseDto>>> Handle(GetFranchiseTranslationsQueryV2 request, CancellationToken cancellationToken)
     {
         var cachedAnimeFranchiseInfos = await _cache.GetDataAsync<IEnumerable<FranchiseTranslationResponseDto>>("anime-franchise-infos");
         if (cachedAnimeFranchiseInfos is not null)
@@ -31,4 +31,4 @@ public class GetFranchiseTranslationsQueryHandlerV2
     }
 }
 
-public record GetAnimeFranchiseInfosQueryV2() : IRequest<Result<IEnumerable<FranchiseTranslationResponseDto>>> { }
+public record GetFranchiseTranslationsQueryV2() : IRequest<Result<IEnumerable<FranchiseTranslationResponseDto>>> { }
