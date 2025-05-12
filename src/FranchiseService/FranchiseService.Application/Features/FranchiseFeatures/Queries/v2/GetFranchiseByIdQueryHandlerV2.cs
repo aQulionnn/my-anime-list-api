@@ -1,9 +1,9 @@
 using FranchiseService.Domain.Interfaces;
-using FranchiseService.Domain.Shared;
 using AutoMapper;
 using FranchiseService.Application.Dtos.FranchiseDtos;
 using MediatR;
 using Polly.Registry;
+using SharedKernel.Shared;
 
 namespace FranchiseService.Application.Features.FranchiseFeatures.Queries.v2;
 

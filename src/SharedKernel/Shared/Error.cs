@@ -1,4 +1,4 @@
-namespace FranchiseService.Domain.Shared;
+namespace SharedKernel.Shared;
 
 public record Error(string Message, object? Details)
 {

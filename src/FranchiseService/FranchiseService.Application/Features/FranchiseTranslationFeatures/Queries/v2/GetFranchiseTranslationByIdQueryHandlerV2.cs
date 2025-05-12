@@ -1,8 +1,8 @@
 using FranchiseService.Domain.Interfaces;
-using FranchiseService.Domain.Shared;
 using AutoMapper;
 using FranchiseService.Application.Dtos.FranchiseTranslationDtos;
 using MediatR;
+using SharedKernel.Shared;
 
 namespace FranchiseService.Application.Features.FranchiseTranslationFeatures.Queries.v2;
 

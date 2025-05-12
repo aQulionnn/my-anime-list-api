@@ -1,10 +1,10 @@
 using FranchiseService.Domain.Entities;
 using FranchiseService.Domain.Interfaces;
-using FranchiseService.Domain.Shared;
 using AutoMapper;
 using FluentValidation;
 using FranchiseService.Application.Dtos.FranchiseTranslationDtos;
 using MediatR;
+using SharedKernel.Shared;
 
 namespace FranchiseService.Application.Features.FranchiseTranslationFeatures.Commands.v2;
 

@@ -1,4 +1,3 @@
-using FranchiseService.Domain.Shared;
 using MediatR;
 using Serilog;
 
@@ -7,7 +6,7 @@ namespace FranchiseService.Application.Behaviors;
  public sealed class RequestLoggingPipelineBehavior<TRequest, TResponse> 
      : IPipelineBehavior<TRequest, TResponse>
      where TRequest : class
-     where TResponse : Result<TResponse>
+     where TResponse : SharedKernel.Shared.Result<TResponse>
  {
      public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
      {

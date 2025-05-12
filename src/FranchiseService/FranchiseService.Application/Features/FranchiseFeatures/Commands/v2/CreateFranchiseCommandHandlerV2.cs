@@ -1,6 +1,5 @@
 using FranchiseService.Domain.Entities;
 using FranchiseService.Domain.Interfaces;
-using FranchiseService.Domain.Shared;
 using AutoMapper;
 using FluentValidation;
 using FranchiseService.Application.Dtos.FranchiseDtos;
@@ -8,6 +7,7 @@ using FranchiseService.Application.Services;
 using MassTransit;
 using MediatR;
 using MessageBroker.Contracts;
+using SharedKernel.Shared;
 
 namespace FranchiseService.Application.Features.FranchiseFeatures.Commands.v2;
 

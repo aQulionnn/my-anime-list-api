@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FranchiseService.Infrastruc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FranchiseService.Presentation", "src\FranchiseService\FranchiseService.Presentation\FranchiseService.Presentation.csproj", "{01DC2212-4329-4626-B52E-39616762CD7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel", "src\SharedKernel\SharedKernel.csproj", "{F47A9D9F-154B-4D82-B6C1-707DCE3D7D06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -122,6 +124,10 @@ Global
 		{01DC2212-4329-4626-B52E-39616762CD7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01DC2212-4329-4626-B52E-39616762CD7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01DC2212-4329-4626-B52E-39616762CD7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F47A9D9F-154B-4D82-B6C1-707DCE3D7D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F47A9D9F-154B-4D82-B6C1-707DCE3D7D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F47A9D9F-154B-4D82-B6C1-707DCE3D7D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F47A9D9F-154B-4D82-B6C1-707DCE3D7D06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C0488660-1568-44E3-851E-67AF2E3E4E54} = {734CA8EB-343C-4325-BCB8-87DAE75787ED}
@@ -144,5 +150,6 @@ Global
 		{59C3B64E-46E6-4F5F-A1B0-501A22BF41D0} = {9824803E-227D-4DE8-8078-681BBD5C9657}
 		{0E976620-A4BF-4FAD-9834-604A9FED8FBF} = {9824803E-227D-4DE8-8078-681BBD5C9657}
 		{01DC2212-4329-4626-B52E-39616762CD7F} = {9824803E-227D-4DE8-8078-681BBD5C9657}
+		{F47A9D9F-154B-4D82-B6C1-707DCE3D7D06} = {734CA8EB-343C-4325-BCB8-87DAE75787ED}
 	EndGlobalSection
 EndGlobal

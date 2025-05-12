@@ -6,12 +6,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\..\SharedKernel\SharedKernel.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Shared\" />
-    </ItemGroup>
-
 </Project>
