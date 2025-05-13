@@ -16,7 +16,7 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.2" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.3" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.3" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
       <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.11.2" />
@@ -33,10 +33,6 @@
     <ItemGroup>
       <ProjectReference Include="..\..\MessageBroker\MessageBroker.csproj" />
       <ProjectReference Include="..\FranchiseService.Application\FranchiseService.Application.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="BackgroundTasks\" />
     </ItemGroup>
 
 </Project>

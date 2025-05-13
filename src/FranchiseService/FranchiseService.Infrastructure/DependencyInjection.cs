@@ -18,7 +18,7 @@ public static class DependencyInjection
         services.AddDbContext<FranchiseDbContext>(options =>
         {
             options.UseNpgsql(configuration.GetConnectionString("Database"), 
-                sqlOptions => sqlOptions.MigrationsHistoryTable("__EFMigrationsHistory_AnimeFranchise"));
+                sqlOptions => sqlOptions.MigrationsHistoryTable("__EFMigrationsHistory_Franchise"));
         });
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -26,15 +26,14 @@ public static class DependencyInjection
         services.AddScoped<IFranchiseTranslationRepository, FranchiseTranslationRepository>();
 
         services.AddScoped<ICacheService, RedisCacheService>();
-        services.AddScoped<IMessagePublisher>();
+        services.AddScoped<IMessagePublisher, MessagePublisher>();
 
         services.AddStackExchangeRedisCache(options =>
         {
             options.Configuration = configuration.GetConnectionString("Redis");
             options.InstanceName = configuration["Redis:InstanceName"];
         });
-
-        services.AddBackgroundTasks();
+        
         services.AddOpenTelemetryConfiguration();
         
         services.AddHealthChecks()

@@ -11,23 +11,23 @@ public class FranchiseTranslationRepository(FranchiseDbContext context) : IFranc
     
     public async Task<FranchiseTranslation> CreateAsync(FranchiseTranslation franchiseTranslation)
     {
-        await _context.AnimeFranchiseInfos.AddAsync(franchiseTranslation);
+        await _context.FranchiseTranslations.AddAsync(franchiseTranslation);
         return franchiseTranslation;
     }
 
     public async Task<IEnumerable<FranchiseTranslation>> GetAllAsync()
     {
-        return await _context.AnimeFranchiseInfos.ToListAsync();
+        return await _context.FranchiseTranslations.ToListAsync();
     }
 
     public async Task<FranchiseTranslation?> GetByIdAsync(Guid id)
     {
-        return await _context.AnimeFranchiseInfos.FindAsync(id);
+        return await _context.FranchiseTranslations.FindAsync(id);
     }
 
     public async Task<FranchiseTranslation?> UpdateAsync(Guid id, FranchiseTranslation franchiseTranslation)
     {
-        var existing = await _context.AnimeFranchiseInfos.FindAsync(id);
+        var existing = await _context.FranchiseTranslations.FindAsync(id);
         if (existing is null) return null;
         
         _context.Entry(existing).CurrentValues.SetValues(franchiseTranslation);
@@ -36,10 +36,10 @@ public class FranchiseTranslationRepository(FranchiseDbContext context) : IFranc
 
     public async Task<FranchiseTranslation?> DeleteAsync(Guid id)
     {
-        var existing = await _context.AnimeFranchiseInfos.FindAsync(id);
+        var existing = await _context.FranchiseTranslations.FindAsync(id);
         if (existing is null) return null;
 
-        _context.AnimeFranchiseInfos.Remove(existing);
+        _context.FranchiseTranslations.Remove(existing);
         return existing;
     }
 }

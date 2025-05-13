@@ -5,7 +5,7 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 
-namespace AnimeService.Application.Features.AnimeSerialFeatures.Commands;
+namespace AnimeService.Application.Features.AnimeFeatures.Commands;
 
 public class CreateAnimeCommandHandler
     (IUnitOfWork unitOfWork, IMapper mapper, IValidator<CreateAnimeDto> validator) 
@@ -40,5 +40,5 @@ public class CreateAnimeCommandHandler
     }
 }
 
-public record CreateAnimeCommand(CreateAnimeDto CreateAnimeDto) // было CreateAnimeSerialCommand
+public record CreateAnimeCommand(CreateAnimeDto CreateAnimeDto) 
     : IRequest<Anime> { }

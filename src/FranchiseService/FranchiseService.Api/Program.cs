@@ -22,8 +22,8 @@ builder.Services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Anime Franchises API v1", Version = "v1" });
-    options.SwaggerDoc("v2", new OpenApiInfo { Title = "Anime Franchises API v2", Version = "v2" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Franchises API v1", Version = "v1" });
+    options.SwaggerDoc("v2", new OpenApiInfo { Title = "Franchises API v2", Version = "v2" });
 });
 
 builder.Services.AddApiVersioning(options =>
@@ -46,8 +46,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Anime Franchises API v1");
-        options.SwaggerEndpoint("/swagger/v2/swagger.json", "Anime Franchises API v2");
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Franchises API v1");
+        options.SwaggerEndpoint("/swagger/v2/swagger.json", "Franchises API v2");
     });
 }
 

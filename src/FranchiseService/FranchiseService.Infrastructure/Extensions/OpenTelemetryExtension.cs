@@ -10,7 +10,7 @@ public static class OpenTelemetryExtension
     public static IServiceCollection AddOpenTelemetryConfiguration(this IServiceCollection services)
     {
         services.AddOpenTelemetry()
-            .ConfigureResource(resource => resource.AddService("AnimeFranchises"))
+            .ConfigureResource(resource => resource.AddService("Franchises"))
             .WithMetrics(metrics =>
             {
                 metrics

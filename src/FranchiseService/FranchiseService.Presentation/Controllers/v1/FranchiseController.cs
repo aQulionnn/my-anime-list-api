@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FranchiseService.Presentation.Controllers.v1;
 
 [ApiVersion("1")]
-[Route("api/v{version:apiVersion}/anime-franchises")]
+[Route("api/v{version:apiVersion}/franchises")]
 [ApiController]
 public class FranchiseController(ISender sender) : ControllerBase
 {
