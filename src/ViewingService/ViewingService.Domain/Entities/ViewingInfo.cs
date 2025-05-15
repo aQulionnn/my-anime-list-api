@@ -1,6 +1,6 @@
 namespace ViewingService.Domain.Entities;
 
-public class ViewingInfo
+public sealed class ViewingInfo
 {
     public Guid Id { get; init; }
     public int ViewingOrder { get; set; }

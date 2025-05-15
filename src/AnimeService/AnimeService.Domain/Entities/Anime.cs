@@ -2,7 +2,7 @@ using AnimeService.Domain.Enums;
 
 namespace AnimeService.Domain.Entities;
 
-public class Anime
+public sealed class Anime
 {
     public Guid Id { get; init; }
     public string PosterUrl { get; set; }

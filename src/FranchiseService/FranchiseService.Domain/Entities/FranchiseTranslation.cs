@@ -2,7 +2,7 @@ using FranchiseService.Domain.Enums;
 
 namespace FranchiseService.Domain.Entities;
 
-public class FranchiseTranslation
+public sealed class FranchiseTranslation
 {
     public Guid Id { get; init; }
     public string Title { get; set; }

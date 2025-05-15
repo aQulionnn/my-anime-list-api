@@ -1,6 +1,6 @@
 namespace FranchiseService.Domain.Entities;
 
-public class Franchise
+public sealed class Franchise
 {
     public Guid Id { get; init; }
     public int ViewingOrder { get; set; }

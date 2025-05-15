@@ -1,6 +1,6 @@
 namespace ViewingService.Domain.Entities;
 
-public class ViewingStat
+public sealed class ViewingStat
 {
     public Guid Id { get; set; }
     public int WatchedEpisodes { get; set; }
