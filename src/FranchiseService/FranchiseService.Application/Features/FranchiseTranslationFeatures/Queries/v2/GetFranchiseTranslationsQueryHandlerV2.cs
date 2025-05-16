@@ -7,7 +7,7 @@ using SharedKernel.Shared;
 
 namespace FranchiseService.Application.Features.FranchiseTranslationFeatures.Queries.v2;
 
-public class GetFranchiseTranslationsQueryHandlerV2
+internal sealed class GetFranchiseTranslationsQueryHandlerV2
     (IUnitOfWork unitOfWork, IMapper mapper, ICacheService cache) 
     : IRequestHandler<GetFranchiseTranslationsQueryV2, Result<IEnumerable<FranchiseTranslationResponseDto>>>
 {

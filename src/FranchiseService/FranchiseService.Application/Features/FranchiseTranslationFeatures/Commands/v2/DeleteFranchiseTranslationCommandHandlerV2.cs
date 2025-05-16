@@ -5,7 +5,7 @@ using SharedKernel.Shared;
 
 namespace FranchiseService.Application.Features.FranchiseTranslationFeatures.Commands.v2;
 
-public class DeleteFranchiseTranslationCommandHandlerV2
+internal sealed class DeleteFranchiseTranslationCommandHandlerV2
     (IUnitOfWork unitOfWork) 
     : IRequestHandler<DeleteFranchiseTranslationCommandV2, Result<FranchiseTranslation>>
 {

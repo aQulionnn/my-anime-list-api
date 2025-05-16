@@ -6,7 +6,7 @@ using Polly.Registry;
 
 namespace FranchiseService.Application.Features.FranchiseTranslationFeatures.Queries.v1;
 
-public class GetFranchiseTranslationByIdQueryHandler
+internal sealed class GetFranchiseTranslationByIdQueryHandler
     (IUnitOfWork unitOfWork, IMapper mapper, ResiliencePipelineProvider<string> resiliencePipelineProvider) 
     : IRequestHandler<GetFranchiseTranslationByIdQuery, FranchiseTranslationResponseDto>
 {

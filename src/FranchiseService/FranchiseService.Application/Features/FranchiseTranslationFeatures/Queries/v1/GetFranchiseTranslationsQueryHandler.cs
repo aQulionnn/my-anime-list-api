@@ -6,7 +6,7 @@ using MediatR;
 
 namespace FranchiseService.Application.Features.FranchiseTranslationFeatures.Queries.v1;
 
-public class GetFranchiseTranslationsQueryHandler
+internal sealed class GetFranchiseTranslationsQueryHandler
     (IUnitOfWork unitOfWork, IMapper mapper, ICacheService cache) 
     : IRequestHandler<GetFranchiseTranslationsQuery, IEnumerable<FranchiseTranslationResponseDto>>
 {

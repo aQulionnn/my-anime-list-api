@@ -8,7 +8,7 @@ using SharedKernel.Shared;
 
 namespace FranchiseService.Application.Features.FranchiseTranslationFeatures.Commands.v2;
 
-public class CreateFranchiseTranslationCommandHandlerV2
+internal sealed class CreateFranchiseTranslationCommandHandlerV2
     (IUnitOfWork unitOfWork, IMapper mapper, IValidator<CreateFranchiseTranslationDto> validator) 
     : IRequestHandler<CreateFranchiseTranslationCommandV2, Result<FranchiseTranslation>>
 {

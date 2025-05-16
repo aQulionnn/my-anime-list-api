@@ -7,7 +7,7 @@ using MediatR;
 
 namespace FranchiseService.Application.Features.FranchiseTranslationFeatures.Commands.v1;
 
-public class CreateFranchiseTranslationCommandHandler
+internal sealed class CreateFranchiseTranslationCommandHandler
     (IUnitOfWork unitOfWork, IMapper mapper, IValidator<CreateFranchiseTranslationDto> validator) 
     : IRequestHandler<CreateFranchiseTranslationCommand, FranchiseTranslation>
 {
