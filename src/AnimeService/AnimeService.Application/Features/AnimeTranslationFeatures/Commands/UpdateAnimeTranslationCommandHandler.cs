@@ -5,17 +5,17 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 
-namespace AnimeService.Application.Features.AnimeSerialInfoFeatures.Commands;
+namespace AnimeService.Application.Features.AnimeTranslationFeatures.Commands;
 
-public class UpdateAnimeTranslationCommandHandler
+internal sealed class UpdateAnimeTranslationCommandHandler
     (IUnitOfWork unitOfWork, IMapper mapper, IValidator<UpdateAnimeTranslationDto> validator) 
-    : IRequestHandler<UpdateAnimeSerialInfoCommand, AnimeTranslation>
+    : IRequestHandler<UpdateAnimeTranslationCommand, AnimeTranslation>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
     private readonly IValidator<UpdateAnimeTranslationDto> _validator = validator;
     
-    public async Task<AnimeTranslation> Handle(UpdateAnimeSerialInfoCommand request, CancellationToken cancellationToken)
+    public async Task<AnimeTranslation> Handle(UpdateAnimeTranslationCommand request, CancellationToken cancellationToken)
     {
         var validation = await _validator.ValidateAsync(request.UpdateAnimeTranslationDto, cancellationToken);
         if (!validation.IsValid)
@@ -40,5 +40,5 @@ public class UpdateAnimeTranslationCommandHandler
     }
 }
 
-public record UpdateAnimeSerialInfoCommand(Guid Id, UpdateAnimeTranslationDto UpdateAnimeTranslationDto) 
+public record UpdateAnimeTranslationCommand(Guid Id, UpdateAnimeTranslationDto UpdateAnimeTranslationDto) 
     : IRequest<AnimeTranslation> { }

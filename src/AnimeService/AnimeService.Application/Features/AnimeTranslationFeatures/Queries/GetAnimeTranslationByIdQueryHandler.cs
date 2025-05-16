@@ -4,21 +4,21 @@ using AutoMapper;
 using MediatR;
 using Polly.Registry;
 
-namespace AnimeService.Application.Features.AnimeSerialInfoFeatures.Queries;
+namespace AnimeService.Application.Features.AnimeTranslationFeatures.Queries;
 
-public class GetAnimeTranslationByIdQueryHandler
+internal sealed class GetAnimeTranslationByIdQueryHandler
     (
         IUnitOfWork unitOfWork, 
         IMapper mapper,
         ResiliencePipelineProvider<string> resiliencePipelineProvider
     ) 
-    : IRequestHandler<GetAnimeSerialInfoByIdQuery, AnimeTranslationResponseDto>
+    : IRequestHandler<GetAnimeTranslationByIdQuery, AnimeTranslationResponseDto>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
     private readonly ResiliencePipelineProvider<string> _resiliencePipelineProvider = resiliencePipelineProvider;
     
-    public async Task<AnimeTranslationResponseDto> Handle(GetAnimeSerialInfoByIdQuery request, CancellationToken cancellationToken)
+    public async Task<AnimeTranslationResponseDto> Handle(GetAnimeTranslationByIdQuery request, CancellationToken cancellationToken)
     {
         var pipeline = _resiliencePipelineProvider.GetPipeline<AnimeTranslationResponseDto>("anime-serial-info-fallback");
 
@@ -30,4 +30,4 @@ public class GetAnimeTranslationByIdQueryHandler
     }
 }
 
-public record GetAnimeSerialInfoByIdQuery(Guid Id) : IRequest<AnimeTranslationResponseDto> { }
+public record GetAnimeTranslationByIdQuery(Guid Id) : IRequest<AnimeTranslationResponseDto> { }

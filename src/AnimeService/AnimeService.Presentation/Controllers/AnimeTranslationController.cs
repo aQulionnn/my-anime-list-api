@@ -1,6 +1,6 @@
 using AnimeService.Application.Dtos.AnimeSerialInfoDtos;
-using AnimeService.Application.Features.AnimeSerialInfoFeatures.Commands;
-using AnimeService.Application.Features.AnimeSerialInfoFeatures.Queries;
+using AnimeService.Application.Features.AnimeTranslationFeatures.Commands;
+using AnimeService.Application.Features.AnimeTranslationFeatures.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +15,7 @@ public class AnimeTranslationController(ISender sender) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateAnimeTranslationDto createAnimeTranslationDto)
     {
-        var command = new CreateAnimeSerialInfoCommand(createAnimeTranslationDto);
+        var command = new CreateAnimeTranslationCommand(createAnimeTranslationDto);
         var result = await _sender.Send(command);
         return Ok(result);
     }
@@ -23,7 +23,7 @@ public class AnimeTranslationController(ISender sender) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllAsync()
     {
-        var query = new GetAnimeSerialInfosQuery();
+        var query = new GetAnimeTranslationsQuery();
         var result = await _sender.Send(query);
         return Ok(result);
     }
@@ -31,7 +31,7 @@ public class AnimeTranslationController(ISender sender) : ControllerBase
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id)
     {
-        var query = new GetAnimeSerialInfoByIdQuery(id);
+        var query = new GetAnimeTranslationByIdQuery(id);
         var result = await _sender.Send(query);
         return Ok(result);
     }
@@ -39,7 +39,7 @@ public class AnimeTranslationController(ISender sender) : ControllerBase
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] UpdateAnimeTranslationDto updateAnimeTranslationDto)
     {
-        var command = new UpdateAnimeSerialInfoCommand(id, updateAnimeTranslationDto);
+        var command = new UpdateAnimeTranslationCommand(id, updateAnimeTranslationDto);
         var result = await _sender.Send(command);
         return Ok(result);
     }
@@ -47,7 +47,7 @@ public class AnimeTranslationController(ISender sender) : ControllerBase
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
     {
-        var command = new DeleteAnimeSerialInfoCommand(id);
+        var command = new DeleteAnimeTranslationCommand(id);
         var result = await _sender.Send(command);
         return Ok(result);
     }
