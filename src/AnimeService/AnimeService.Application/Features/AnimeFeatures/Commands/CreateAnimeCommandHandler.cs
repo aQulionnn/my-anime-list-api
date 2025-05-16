@@ -7,7 +7,7 @@ using MediatR;
 
 namespace AnimeService.Application.Features.AnimeFeatures.Commands;
 
-public class CreateAnimeCommandHandler
+internal sealed class CreateAnimeCommandHandler
     (IUnitOfWork unitOfWork, IMapper mapper, IValidator<CreateAnimeDto> validator) 
     : IRequestHandler<CreateAnimeCommand, Anime> // было CreateAnimeSerialCommand
 {

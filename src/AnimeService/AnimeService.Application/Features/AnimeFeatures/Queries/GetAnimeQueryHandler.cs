@@ -4,17 +4,17 @@ using AnimeService.Domain.Interfaces;
 using AutoMapper;
 using MediatR;
 
-namespace AnimeService.Application.Features.AnimeSerialFeatures.Queries;
+namespace AnimeService.Application.Features.AnimeFeatures.Queries;
 
-public class GetAnimeQueryHandler
+internal sealed class GetAnimeQueryHandler
     (IUnitOfWork unitOfWork, IMapper mapper, ICacheService cache) 
-    : IRequestHandler<GetAnimeSeriesQuery, IEnumerable<AnimeResponseDto>>
+    : IRequestHandler<GetAnimeQuery, IEnumerable<AnimeResponseDto>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
     private readonly ICacheService _cache = cache;
     
-    public async Task<IEnumerable<AnimeResponseDto>> Handle(GetAnimeSeriesQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<AnimeResponseDto>> Handle(GetAnimeQuery request, CancellationToken cancellationToken)
     {
         var cachedAnimeSerials = await _cache.GetDataAsync<IEnumerable<AnimeResponseDto>>("anime-series");
         if (cachedAnimeSerials is not null)
@@ -30,4 +30,4 @@ public class GetAnimeQueryHandler
     }
 }
 
-public record GetAnimeSeriesQuery() : IRequest<IEnumerable<AnimeResponseDto>> { }
+public record GetAnimeQuery() : IRequest<IEnumerable<AnimeResponseDto>> { }

@@ -1,7 +1,7 @@
 using AnimeService.Application.Dtos.AnimeDtos;
 using AnimeService.Application.Features.AnimeFeatures.Commands;
-using AnimeService.Application.Features.AnimeSerialFeatures.Commands;
-using AnimeService.Application.Features.AnimeSerialFeatures.Queries;
+using AnimeService.Application.Features.AnimeFeatures.Commands;
+using AnimeService.Application.Features.AnimeFeatures.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +24,7 @@ public class AnimeController(ISender sender) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllAsync()
     {
-        var query = new GetAnimeSeriesQuery();
+        var query = new GetAnimeQuery();
         var result = await _sender.Send(query);
         return Ok(result);
     }
@@ -32,7 +32,7 @@ public class AnimeController(ISender sender) : ControllerBase
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id)
     {
-        var query = new GetAnimeSerialByIdQuery(id);
+        var query = new GetAnimeByIdQuery(id);
         var result = await _sender.Send(query);
         return Ok(result);
     }
@@ -40,7 +40,7 @@ public class AnimeController(ISender sender) : ControllerBase
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] UpdateAnimeDto updateAnimeDto)
     {
-        var command = new UpdateAnimeSerialCommand(id, updateAnimeDto);
+        var command = new UpdateAnimeCommand(id, updateAnimeDto);
         var result = await _sender.Send(command);
         return Ok(result);
     }
@@ -48,7 +48,7 @@ public class AnimeController(ISender sender) : ControllerBase
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
     {
-        var command = new DeleteAnimeSerialCommand(id);
+        var command = new DeleteAnimeCommand(id);
         var result = await _sender.Send(command);
         return Ok(result);
     }

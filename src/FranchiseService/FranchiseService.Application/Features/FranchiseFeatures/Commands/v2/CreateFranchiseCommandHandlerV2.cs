@@ -11,7 +11,7 @@ using SharedKernel.Shared;
 
 namespace FranchiseService.Application.Features.FranchiseFeatures.Commands.v2;
 
-public class CreateFranchiseCommandHandlerV2
+internal sealed class CreateFranchiseCommandHandlerV2
     (
         IUnitOfWork unitOfWork, 
         IMapper mapper, 

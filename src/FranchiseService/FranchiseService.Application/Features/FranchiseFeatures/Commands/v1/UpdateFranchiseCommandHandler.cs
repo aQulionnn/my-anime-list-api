@@ -7,7 +7,7 @@ using MediatR;
 
 namespace FranchiseService.Application.Features.FranchiseFeatures.Commands.v1;
 
-public class UpdateFranchiseCommandHandler
+internal sealed class UpdateFranchiseCommandHandler
     (IUnitOfWork unitOfWork, IMapper mapper, IValidator<UpdateFranchiseDto> validator) 
     : IRequestHandler<UpdateFranchiseCommand, Franchise>
 {

@@ -6,7 +6,7 @@ using MediatR;
 
 namespace FranchiseService.Application.Features.FranchiseFeatures.Queries.v1;
 
-public class GetFranchisesQueryHandler
+internal sealed class GetFranchisesQueryHandler
     (IUnitOfWork unitOfWork, IMapper mapper, ICacheService cache) 
     : IRequestHandler<GetFranchisesQuery, IEnumerable<FranchiseResponseDto>>
 {

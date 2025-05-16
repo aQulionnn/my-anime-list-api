@@ -4,7 +4,7 @@ using MediatR;
 
 namespace FranchiseService.Application.Features.FranchiseFeatures.Commands.v1;
 
-public class DeleteFranchiseCommandHandler(IUnitOfWork unitOfWork) 
+internal sealed class DeleteFranchiseCommandHandler(IUnitOfWork unitOfWork) 
     : IRequestHandler<DeleteFranchiseCommand, Franchise>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;

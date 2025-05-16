@@ -8,7 +8,7 @@ using SharedKernel.Shared;
 
 namespace FranchiseService.Application.Features.FranchiseFeatures.Commands.v2;
 
-public class UpdateFranchiseCommandHandlerV2
+internal sealed class UpdateFranchiseCommandHandlerV2
     (IUnitOfWork unitOfWork, IMapper mapper, IValidator<UpdateFranchiseDto> validator) 
     : IRequestHandler<UpdateFranchiseCommandV2, Result<Franchise>>
 {

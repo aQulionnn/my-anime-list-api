@@ -7,7 +7,7 @@ using MediatR;
 
 namespace FranchiseService.Application.Features.FranchiseFeatures.Commands.v1;
 
-public class CreateFranchiseCommandHandler
+internal sealed class CreateFranchiseCommandHandler
     (
         IUnitOfWork unitOfWork, 
         IMapper mapper, 

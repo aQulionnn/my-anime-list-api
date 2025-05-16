@@ -2,14 +2,14 @@ using AnimeService.Domain.Entities;
 using AnimeService.Domain.Interfaces;
 using MediatR;
 
-namespace AnimeService.Application.Features.AnimeSerialFeatures.Commands;
+namespace AnimeService.Application.Features.AnimeFeatures.Commands;
 
-public class DeleteAnimeCommandHandler(IUnitOfWork unitOfWork) 
-    : IRequestHandler<DeleteAnimeSerialCommand, Anime>
+internal sealed class DeleteAnimeCommandHandler(IUnitOfWork unitOfWork) 
+    : IRequestHandler<DeleteAnimeCommand, Anime>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     
-    public async Task<Anime> Handle(DeleteAnimeSerialCommand request, CancellationToken cancellationToken)
+    public async Task<Anime> Handle(DeleteAnimeCommand request, CancellationToken cancellationToken)
     {
         await _unitOfWork.BeginAsync();
         try
@@ -27,5 +27,5 @@ public class DeleteAnimeCommandHandler(IUnitOfWork unitOfWork)
     }
 }
 
-public record DeleteAnimeSerialCommand(Guid Id) 
+public record DeleteAnimeCommand(Guid Id) 
     : IRequest<Anime> { }
