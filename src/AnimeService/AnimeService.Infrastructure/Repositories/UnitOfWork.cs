@@ -9,15 +9,11 @@ public class UnitOfWork(AnimeServiceDbContext context) : IUnitOfWork
     private IAnimeRepository _animeRepository;
     private IAnimeTranslationRepository _animeTranslationRepository;
     
-    public IAnimeRepository AnimeRepository
-    {
-        get { return _animeRepository = new AnimeRepository(_context); }
-    }
-
-    public IAnimeTranslationRepository AnimeTranslationRepository
-    {
-        get { return _animeTranslationRepository = new AnimeTranslationRepository(_context); }
-    }
+    public IAnimeRepository AnimeRepository 
+        => _animeRepository ??= new AnimeRepository(_context); 
+    
+    public IAnimeTranslationRepository AnimeTranslationRepository 
+        =>_animeTranslationRepository ??= new AnimeTranslationRepository(_context);
     
     public async Task BeginAsync()
     {
