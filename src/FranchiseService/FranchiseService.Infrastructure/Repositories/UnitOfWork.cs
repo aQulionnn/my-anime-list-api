@@ -9,8 +9,10 @@ public class UnitOfWork(FranchiseDbContext context) : IUnitOfWork
     private IFranchiseRepository _franchiseRepo;
     private IFranchiseTranslationRepository _franchiseTranslationRepo;
     
-    public IFranchiseRepository FranchiseRepository { get { return _franchiseRepo = new FranchiseRepository(_context); } }
-    public IFranchiseTranslationRepository FranchiseTranslationRepository { get { return _franchiseTranslationRepo = new FranchiseTranslationRepository(_context); } }
+    public IFranchiseRepository FranchiseRepository 
+        => _franchiseRepo ??= new FranchiseRepository(_context); 
+    public IFranchiseTranslationRepository FranchiseTranslationRepository 
+        => _franchiseTranslationRepo ??= new FranchiseTranslationRepository(_context);
     
     public async Task BeginAsync()
     {
