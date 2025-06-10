@@ -2,6 +2,7 @@ using FranchiseService.Application.Services;
 using FranchiseService.Domain.Interfaces;
 using FranchiseService.Infrastructure.Extensions;
 using FranchiseService.Infrastructure.Data;
+using FranchiseService.Infrastructure.Decorators;
 using FranchiseService.Infrastructure.Repositories;
 using FranchiseService.Infrastructure.Services;
 using MessageBroker;

@@ -1,7 +1,8 @@
 using FranchiseService.Application.Services;
+using FranchiseService.Infrastructure.Services;
 using Polly;
 
-namespace FranchiseService.Infrastructure.Services;
+namespace FranchiseService.Infrastructure.Decorators;
 
 public class ResilientRedisCacheService(RedisCacheService redis) 
     : ICacheService
