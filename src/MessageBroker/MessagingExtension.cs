@@ -1,4 +1,5 @@
 using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,7 +23,17 @@ public static class MessagingExtension
 
                 config.ConfigureEndpoints(context);
             });
+            
+            mt.AddEntityFrameworkOutbox<MessagingDbContext>(o =>
+            {
+                o.QueryDelay = TimeSpan.FromSeconds(5);
+                o.UsePostgres().UseBusOutbox();
+                o.DuplicateDetectionWindow = TimeSpan.FromMinutes(1);
+            });
         });
+
+        services.AddDbContext<MessagingDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("Database"), 
+            sqlOptions => sqlOptions.MigrationsHistoryTable("__EFMigrationsHistory_Messaging")));
         
         return services;
     }
