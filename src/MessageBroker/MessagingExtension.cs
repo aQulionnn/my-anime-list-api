@@ -1,3 +1,4 @@
+using Azure.Storage.Blobs;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,12 +10,19 @@ public static class MessagingExtension
 {
     public static IServiceCollection AddMessaging(this IServiceCollection services, IConfiguration configuration)
     {
+        var client = new BlobServiceClient(configuration.GetConnectionString("BlogStorage"));
+        var repository = client.CreateMessageDataRepository("message-data", true);
+        
+        services.AddSingleton<IMessageDataRepository>(repository);
+        
         services.AddMassTransit(mt =>
         {
             mt.SetKebabCaseEndpointNameFormatter();
 
             mt.UsingRabbitMq((context, config) =>
             {
+                config.UseMessageData(repository);
+                
                 config.Host(configuration["RabbitMQ:Host"], "/", host =>
                 {
                     host.Username(configuration["RabbitMQ:Username"]!);

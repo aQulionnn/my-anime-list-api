@@ -1,3 +1,9 @@
+using MassTransit;
+
 namespace MessageBroker.Contracts;
 
-public record FranchiseCreated(Guid FranchiseId);
+public interface FranchiseCreated
+{
+    Guid FranchiseId { get; }
+    MessageData<string> Description { get; }
+}

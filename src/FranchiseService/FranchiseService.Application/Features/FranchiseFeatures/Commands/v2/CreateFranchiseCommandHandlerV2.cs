@@ -44,7 +44,7 @@ internal sealed class CreateFranchiseCommandHandlerV2
             result = await _unitOfWork.FranchiseRepository.CreateAsync(animeFranchise);
             await _unitOfWork.CommitAsync();
 
-            await _messagePublisher.PublishAsync(new FranchiseCreated(result.Id), cancellationToken);
+            await _messagePublisher.PublishAsync(new PublishFranchiseCreated(result.Id, "created"), cancellationToken);
             await _cache.SetDataAsync($"franchises:{result.Id}", true, TimeSpan.FromHours(1));
             
             return Result<Franchise>.Success(result);
@@ -59,3 +59,5 @@ internal sealed class CreateFranchiseCommandHandlerV2
 
 public record CreateFranchiseCommandV2(CreateFranchiseDto CreateFranchiseDto) 
     : IRequest<Result<Franchise>> { }
+    
+public record PublishFranchiseCreated(Guid FranchiseId, string Description);

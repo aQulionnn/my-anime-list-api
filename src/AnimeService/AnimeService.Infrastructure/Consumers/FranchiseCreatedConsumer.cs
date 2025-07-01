@@ -11,6 +11,8 @@ public class FranchiseCreatedConsumer(AnimeServiceDbContext dbContext) : IConsum
     
     public async Task Consume(ConsumeContext<FranchiseCreated> context)
     {
+        var description = await context.Message.Description.Value;
+        
         var franchiseRef = new FranchiseReference
         {
             FranchiseId = context.Message.FranchiseId,
